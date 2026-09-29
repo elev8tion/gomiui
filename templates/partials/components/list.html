@@ -1,0 +1,14 @@
+{{define "partials/components/list"}}
+{{if index .Data "Components"}}
+  {{range index .Data "Components"}}
+    {{template "partials/components/row" .}}
+  {{end}}
+{{else}}
+  <div class="catalog-empty">
+    <div class="catalog-empty__glyph" aria-hidden="true">⌁</div>
+    <h2>No components match that search.</h2>
+    <p>Try a shorter term, or clear the filter to see the whole kit.</p>
+    <a class="ui-button ui-button--secondary" href="/components">Show everything</a>
+  </div>
+{{end}}
+{{end}}

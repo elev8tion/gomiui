@@ -1,0 +1,11 @@
+.DS_Store
+app
+*.db
+.mcp.json
+.cursor/
+.env
+.env.*
+
+.vnodes/*
+!.vnodes/.gitignore
+!.vnodes/manifest.json

@@ -1,0 +1,10 @@
+{{define "pages/tasks/index-content"}}
+<div class="detail-layout task-layout">
+  <aside class="detail-rail"><a class="back-link" href="/components">← Back to kit</a><p class="ui-kicker">HTMX lab</p><h1>Tasks</h1><p class="detail-rail__copy">A tiny persistence example. Same HTML-first rules, now backed by SQLite and fragment swaps.</p><span class="ui-badge ui-badge--accent">live example</span></aside>
+  <section class="detail-main">
+    <div class="section-heading"><div><p class="ui-kicker">Create / complete / delete</p><h2>Task list</h2></div></div>
+    {{template "partials/tasks/form" .}}
+    {{template "partials/tasks/list" .}}
+  </section>
+</div>
+{{end}}

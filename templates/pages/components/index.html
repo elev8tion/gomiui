@@ -1,0 +1,58 @@
+{{define "pages/components/index-content"}}
+<div class="catalog-layout">
+  <aside class="catalog-rail" aria-label="Component categories">
+    <div class="rail-heading">
+      <span class="rail-heading__eyebrow">The system</span>
+      <strong>gomiui</strong>
+    </div>
+    <nav class="category-nav">
+      <a class="category-link {{if eq (index .Data "Active") ""}}is-active{{end}}" href="/components">
+        <span>All components</span><span>{{index (index .Data "Stats") "Components"}}</span>
+      </a>
+      {{range index .Data "Categories"}}
+      <a class="category-link {{if eq (index $.Data "Active") .Slug}}is-active{{end}}" href="/components?category={{.Slug}}">
+        <span>{{.Label}}</span><span>{{.Count}}</span>
+      </a>
+      {{end}}
+    </nav>
+    <div class="rail-note">
+      <span class="ui-status-dot"></span>
+      <span><strong>v0.1 / stable core</strong><br>native HTML, no framework tax</span>
+    </div>
+  </aside>
+
+  <section class="catalog-main">
+    <header class="catalog-hero">
+      <div>
+        <p class="ui-kicker">Server-rendered by design</p>
+        <h1>Interface, without the ceremony.</h1>
+        <p class="catalog-hero__copy">A dark-first Go + HTMX UI kit distilled from miui's strongest ideas: semantic HTML, token-led CSS, and motion that knows when to stop.</p>
+      </div>
+      <div class="hero-orb" aria-hidden="true"><div class="ui-orb"></div></div>
+    </header>
+
+    <div class="catalog-toolbar">
+      <div>
+        <p class="toolbar__count"><strong>{{len (index .Data "Components")}}</strong> components in view</p>
+        <p class="toolbar__hint">Every preview is real markup. Every interaction has a non-JS path.</p>
+      </div>
+      <label class="search-field">
+        <span class="sr-only">Search components</span>
+        <span class="search-field__icon" aria-hidden="true">⌕</span>
+        <input id="component-search" name="q" value="{{index .Data "Query"}}" placeholder="Search the kit" autocomplete="off"
+          hx-get="/fragments/components/list" hx-target="#component-grid" hx-trigger="input changed delay:160ms, search" hx-include="#component-filters">
+      </label>
+    </div>
+    <div id="component-filters" class="filter-row" role="group" aria-label="Filter components">
+      <input type="hidden" name="category" value="{{index .Data "Active"}}">
+      {{range index .Data "Categories"}}
+      <button class="filter-chip {{if eq (index $.Data "Active") .Slug}}is-active{{end}}" type="button" data-category="{{.Slug}}"
+        hx-get="/fragments/components/list?category={{.Slug}}" hx-target="#component-grid" hx-include="#component-search">{{.Label}}</button>
+      {{end}}
+    </div>
+    <div id="component-grid" class="component-grid">
+      {{template "partials/components/list" .}}
+    </div>
+  </section>
+</div>
+{{end}}

@@ -1,0 +1,32 @@
+{{define "pages/components/show-content"}}
+{{with index .Data "Selected"}}
+<div class="detail-layout">
+  <aside class="detail-rail">
+    <a class="back-link" href="/components">← All components</a>
+    <p class="ui-kicker">{{.Category}}</p>
+    <h1>{{.Name}}</h1>
+    <p class="detail-rail__copy">{{.Description}}</p>
+    <span class="ui-badge {{if eq .Status "stable"}}ui-badge--accent{{else}}ui-badge--neutral{{end}}">{{.Status}}</span>
+    <nav class="detail-nav" aria-label="On this page">
+      <a href="#preview">Preview</a>
+      <a href="#markup">Markup</a>
+      <a href="#accessibility">Accessibility</a>
+    </nav>
+  </aside>
+  <article class="detail-main">
+    <section id="preview" class="detail-section">
+      <div class="section-heading"><div><p class="ui-kicker">Live surface</p><h2>Preview</h2></div><span class="section-heading__meta">server-rendered HTML</span></div>
+      <div class="preview-frame">{{template "kit/preview" .}}</div>
+    </section>
+    <section id="markup" class="detail-section">
+      <div class="section-heading"><div><p class="ui-kicker">Copy-ready</p><h2>Markup</h2></div><button class="ui-button ui-button--quiet ui-button--small" type="button" data-copy-target="#component-markup">Copy markup</button></div>
+      <pre id="component-markup" class="code-block"><code>{{.Markup}}</code></pre>
+    </section>
+    <section id="accessibility" class="detail-section">
+      <div class="section-heading"><div><p class="ui-kicker">Contract</p><h2>Accessibility notes</h2></div></div>
+      <ul class="contract-list">{{range .Accessibility}}<li><span aria-hidden="true">＋</span>{{.}}</li>{{end}}</ul>
+    </section>
+  </article>
+</div>
+{{end}}
+{{end}}

@@ -1,0 +1,35 @@
+{{define "partials/components/row"}}
+<article class="component-card">
+  <div class="component-card__topline">
+    <span class="ui-badge {{if eq .Status "stable"}}ui-badge--accent{{else}}ui-badge--neutral{{end}}">{{.Status}}</span>
+    <span class="component-card__category">{{.Category}}</span>
+  </div>
+  <a class="component-card__link" href="/components/{{.Slug}}">
+    <h2>{{.Name}}</h2>
+    <p>{{.Summary}}</p>
+  </a>
+  <div class="component-card__preview">
+    {{if eq .Slug "button"}}<button class="ui-button ui-button--primary" type="button">Continue</button><button class="ui-button ui-button--quiet" type="button">Later</button>
+    {{else if eq .Slug "badge"}}<span class="ui-badge ui-badge--accent">ready</span><span class="ui-badge ui-badge--neutral">Go</span>
+    {{else if eq .Slug "card"}}<div class="mini-card"><span class="mini-card__line mini-card__line--wide"></span><span class="mini-card__line"></span><span class="mini-card__line mini-card__line--short"></span></div>
+    {{else if eq .Slug "input"}}<div class="mini-input">Search components <span>⌕</span></div>
+    {{else if eq .Slug "switch"}}<label class="ui-switch ui-switch--small"><input type="checkbox" checked><span class="ui-switch__track" aria-hidden="true"><span></span></span><span>Live</span></label>
+    {{else if eq .Slug "alert"}}<div class="ui-alert ui-alert--success" role="status"><strong>Saved</strong><span>just now</span></div>
+    {{else if eq .Slug "progress"}}<div class="mini-progress"><span style="--value: 68%"></span></div>
+    {{else if eq .Slug "tabs"}}<div class="ui-tabs ui-tabs--small"><span class="ui-tab is-active">Preview</span><span class="ui-tab">Code</span></div>
+    {{else if eq .Slug "stepper"}}<div class="mini-steps"><span class="is-complete">✓</span><i></i><span class="is-active">2</span><i></i><span>3</span></div>
+    {{else if eq .Slug "table"}}<div class="mini-table"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    {{else if eq .Slug "chart"}}<div class="mini-chart"><i style="--bar:34%"></i><i style="--bar:54%"></i><i style="--bar:46%"></i><i style="--bar:80%"></i><i style="--bar:67%"></i><i style="--bar:93%"></i></div>
+    {{else if eq .Slug "terminal"}}<div class="mini-terminal"><span>$ go test ./...</span><b>ok</b></div>
+    {{else if eq .Slug "liquid-button"}}<button class="ui-liquid" type="button"><span aria-hidden="true"></span><b>Hover me</b></button>
+    {{else if eq .Slug "orb"}}<div class="ui-orb ui-orb--small" aria-hidden="true"></div>
+    {{else if eq .Slug "empty-state"}}<div class="mini-empty"><span>∅</span><strong>Clear space</strong></div>
+    {{else if eq .Slug "spotlight"}}<div class="mini-card ui-spotlight"><span class="mini-card__line mini-card__line--wide"></span></div>
+    {{end}}
+  </div>
+  <footer class="component-card__footer">
+    {{range .Tags}}<span>#{{.}}</span>{{end}}
+    <a href="/components/{{.Slug}}" aria-label="View {{.Name}} details">View details <span aria-hidden="true">↗</span></a>
+  </footer>
+</article>
+{{end}}
