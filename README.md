@@ -16,12 +16,12 @@ Open <http://localhost:8080/components>.
 
 - searchable, filterable component catalogue
 - foundations: Button, Badge, Card, Input
-- controls: Switch
-- feedback: Alert, Progress
-- navigation: Tabs, Stepper
-- data: Table, Chart
-- blocks: Terminal, Empty state
-- CSS-first effects: Liquid button, Color orb, Spotlight
+- controls: Switch, Textarea, Checkbox, Radio group, Select, Slider, Cyber button
+- feedback: Alert, Progress, Dialog, Tooltip
+- navigation: Tabs, Stepper, Accordion
+- data: Table, Chart, Avatar, Keyboard hint, Separator, Scroll area, Sparkline, Donut
+- blocks: Terminal, Empty state, Stat card, Feature card, Pricing card, Model card, Code window
+- CSS-first effects: Liquid button, Color orb, Spotlight, Text shimmer, Marquee, Border beam, Counter, Typewriter, System pulse, Liquid tick
 - component detail pages with live preview, copy-ready markup, and accessibility contracts
 - `/tasks` as a small SQLite + HTMX persistence example
 - light/dark themes, reduced-motion support, responsive layout, keyboard focus states

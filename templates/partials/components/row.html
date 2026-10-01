@@ -25,6 +25,33 @@
     {{else if eq .Slug "orb"}}<div class="ui-orb ui-orb--small" aria-hidden="true"></div>
     {{else if eq .Slug "empty-state"}}<div class="mini-empty"><span>∅</span><strong>Clear space</strong></div>
     {{else if eq .Slug "spotlight"}}<div class="mini-card ui-spotlight"><span class="mini-card__line mini-card__line--wide"></span></div>
+    {{else if eq .Slug "textarea"}}<div class="mini-input mini-input--area">Release notes</div>
+    {{else if eq .Slug "checkbox"}}<label class="ui-check"><input type="checkbox" checked><span class="ui-check__box" aria-hidden="true"></span><span>Index</span></label>
+    {{else if eq .Slug "radio-group"}}<label class="ui-radio"><input type="radio" checked><span class="ui-radio__mark" aria-hidden="true"></span><span>Dark</span></label>
+    {{else if eq .Slug "select"}}<span class="ui-select ui-select--mini"><select aria-label="Model"><option>Claude</option></select></span>
+    {{else if eq .Slug "slider"}}<span class="mini-range" style="--value: 64%"></span>
+    {{else if eq .Slug "accordion"}}<span class="mini-acc"><b>Tokens</b><b>Motion</b></span>
+    {{else if eq .Slug "dialog"}}<span class="mini-dialog"><strong>Publish?</strong><i></i></span>
+    {{else if eq .Slug "tooltip"}}<span class="mini-tip">Density</span>
+    {{else if eq .Slug "avatar"}}<span class="ui-avatars"><span class="ui-avatar">A</span><span class="ui-avatar ui-avatar--b">K</span><span class="ui-avatar ui-avatar--more">+3</span></span>
+    {{else if eq .Slug "kbd"}}<span class="ui-kbd"><kbd>⌘</kbd><kbd>K</kbd></span>
+    {{else if eq .Slug "separator"}}<span class="mini-sep"></span>
+    {{else if eq .Slug "scroll-area"}}<span class="mini-scroll"><i></i><i></i><i></i></span>
+    {{else if eq .Slug "sparkline"}}<svg class="mini-spark" viewBox="0 0 80 28" aria-hidden="true"><polyline points="0,22 14,18 28,20 42,12 56,14 80,4"></polyline></svg>
+    {{else if eq .Slug "donut"}}<span class="mini-donut" style="--a: 62%; --b: 86%"></span>
+    {{else if eq .Slug "cyber-button"}}<button class="ui-cyber" type="button"><span>Deploy</span></button>
+    {{else if eq .Slug "text-shimmer"}}<strong class="ui-shimmer">Index</strong>
+    {{else if eq .Slug "marquee"}}<span class="mini-marquee">Go · HTMX · CSS</span>
+    {{else if eq .Slug "border-beam"}}<span class="mini-card ui-beam"><span class="mini-card__line mini-card__line--wide"></span></span>
+    {{else if eq .Slug "counter"}}<strong class="mini-count">1,284</strong>
+    {{else if eq .Slug "typewriter"}}<span class="mini-type">Server rendered</span>
+    {{else if eq .Slug "system-pulse"}}<span class="ui-pulse"><i aria-hidden="true"></i>Healthy</span>
+    {{else if eq .Slug "liquid-tick"}}<label class="ui-tick"><input type="checkbox" checked><span aria-hidden="true"></span><b>Done</b></label>
+    {{else if eq .Slug "stat-card"}}<span class="mini-stat"><b>18</b><em>↓ 12%</em></span>
+    {{else if eq .Slug "feature-card"}}<span class="mini-card"><span class="mini-card__line mini-card__line--short"></span><span class="mini-card__line"></span></span>
+    {{else if eq .Slug "pricing-card"}}<span class="mini-price"><b>12</b><i>/mo</i></span>
+    {{else if eq .Slug "model-card"}}<span class="mini-model"><b>Claude</b><span class="ui-badge ui-badge--accent">ready</span></span>
+    {{else if eq .Slug "code-window"}}<span class="mini-terminal"><span>handlers.go</span><b>HTML</b></span>
     {{end}}
   </div>
   <footer class="component-card__footer">

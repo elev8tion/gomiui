@@ -34,6 +34,62 @@
     <section class="ui-empty" aria-labelledby="empty-preview-title"><div class="ui-empty__mark">∅</div><h3 id="empty-preview-title">Nothing indexed yet</h3><p>Connect a repository to see its first component graph.</p><a class="ui-button ui-button--primary" href="/components">Browse the kit</a></section>
   {{else if eq .Slug "spotlight"}}
     <div class="preview-grid preview-grid--two"><article class="ui-card ui-spotlight"><p class="ui-kicker">Featured primitive</p><h3 class="ui-card__title">Make one thing matter</h3><p class="ui-card__copy">The accent edge creates hierarchy without adding another color.</p></article><article class="ui-card"><p class="ui-kicker">Normal surface</p><h3 class="ui-card__title">Let the rest recede</h3><p class="ui-card__copy">Contrast is a finite resource. Spend it with intent.</p></article></div>
+  {{else if eq .Slug "textarea"}}
+    <label class="ui-field"><span class="ui-field__label">Release notes</span><textarea class="ui-textarea" name="notes" rows="4">Shipped the completed form primitives.</textarea><span class="ui-field__hint">Plain text. The server stores exactly what is submitted.</span></label>
+  {{else if eq .Slug "checkbox"}}
+    <div class="preview-stack"><label class="ui-check"><input type="checkbox" checked><span class="ui-check__box" aria-hidden="true"></span><span class="ui-choice"><strong>Index on save</strong><small>Rebuild the graph after each write.</small></span></label><label class="ui-check"><input type="checkbox"><span class="ui-check__box" aria-hidden="true"></span><span class="ui-choice"><strong>Watch the tree</strong><small>Leave this off for a one-shot index.</small></span></label></div>
+  {{else if eq .Slug "radio-group"}}
+    <fieldset class="ui-radios"><legend>Default theme</legend><label class="ui-radio"><input type="radio" name="preview-theme" value="dark" checked><span class="ui-radio__mark" aria-hidden="true"></span><span>Dark</span></label><label class="ui-radio"><input type="radio" name="preview-theme" value="light"><span class="ui-radio__mark" aria-hidden="true"></span><span>Light</span></label></fieldset>
+  {{else if eq .Slug "select"}}
+    <label class="ui-field"><span class="ui-field__label">Model</span><span class="ui-select"><select name="model"><option>Claude</option><option>GPT</option><option>Local</option></select></span><span class="ui-field__hint">Native menu. No custom popup.</span></label>
+  {{else if eq .Slug "slider"}}
+    <label class="ui-slider"><span>Density <strong>64</strong></span><input type="range" min="0" max="100" value="64"></label>
+  {{else if eq .Slug "accordion"}}
+    <div class="ui-accordion"><details open><summary>Tokens</summary><p>Color, type, and radius live in one stylesheet.</p></details><details><summary>Motion</summary><p>Effects are optional and collapse under reduced motion.</p></details></div>
+  {{else if eq .Slug "dialog"}}
+    <dialog class="ui-dialog" open><form method="dialog"><header><h3>Publish this kit?</h3></header><p>The catalogue will be visible to everyone on this machine.</p><div class="ui-dialog__actions"><button class="ui-button ui-button--quiet" value="cancel">Cancel</button><button class="ui-button ui-button--primary" value="publish">Publish</button></div></form></dialog>
+  {{else if eq .Slug "tooltip"}}
+    <div class="preview-center"><span class="ui-tip"><button class="ui-button ui-button--secondary" type="button">Density</button><span class="ui-tip__bubble" role="tooltip">How tightly cards pack on the page.</span></span><p class="preview-note">Hover or focus the button.</p></div>
+  {{else if eq .Slug "avatar"}}
+    <div class="ui-avatars" aria-label="Ada, Ken, and 3 more"><span class="ui-avatar">A</span><span class="ui-avatar ui-avatar--b">K</span><span class="ui-avatar ui-avatar--c">M</span><span class="ui-avatar ui-avatar--more">+3</span></div>
+  {{else if eq .Slug "kbd"}}
+    <p class="ui-kbd-line"><span>Command palette</span> <span class="ui-kbd"><kbd>⌘</kbd><kbd>K</kbd></span></p>
+  {{else if eq .Slug "separator"}}
+    <div class="preview-stack"><hr class="ui-separator"><div class="ui-separator ui-separator--label" role="separator">or</div></div>
+  {{else if eq .Slug "scroll-area"}}
+    <div class="ui-scroll" tabindex="0"><p>First finding. The graph has two edges.</p><p>Second finding. Hubs sit in the renderer and the handlers.</p><p>Third finding. Experimental canvas effects stay out of this kit.</p></div>
+  {{else if eq .Slug "sparkline"}}
+    <figure class="ui-sparkline"><svg class="ui-spark" viewBox="0 0 120 36" role="img" aria-label="Latency fell from 42 to 18"><polygon points="0,28 16,24 32,26 48,18 64,20 80,12 96,14 120,6 120,36 0,36"></polygon><polyline points="0,28 16,24 32,26 48,18 64,20 80,12 96,14 120,6"></polyline></svg><figcaption>Latency <strong>18 ms</strong></figcaption></figure>
+  {{else if eq .Slug "donut"}}
+    <div class="ui-donut-block"><div class="ui-donut" style="--a: 62%; --b: 86%" role="img" aria-label="Passed 62%, running 24%, queued 14%"><span>62%</span></div><ul class="ui-legend"><li><i style="--swatch: var(--accent)"></i>Passed 62%</li><li><i style="--swatch: var(--warning)"></i>Running 24%</li><li><i style="--swatch: var(--line-strong)"></i>Queued 14%</li></ul></div>
+  {{else if eq .Slug "cyber-button"}}
+    <div class="preview-row"><button class="ui-cyber" type="button"><span>Deploy</span></button><button class="ui-cyber ui-cyber--quiet" type="button"><span>Hold</span></button></div>
+  {{else if eq .Slug "text-shimmer"}}
+    <p class="ui-shimmer">Indexing the graph</p>
+  {{else if eq .Slug "marquee"}}
+    <div class="ui-marquee"><div class="ui-marquee__track"><span>Go</span><span>HTMX</span><span>SQLite</span><span>CSS</span><span>Go</span><span>HTMX</span><span>SQLite</span><span>CSS</span></div></div>
+  {{else if eq .Slug "border-beam"}}
+    <article class="ui-card ui-beam"><p class="ui-kicker">Live</p><h3 class="ui-card__title">Edge light</h3><p class="ui-card__copy">One moving line. The content stays still.</p></article>
+  {{else if eq .Slug "counter"}}
+    <p class="ui-counter"><strong>1,284</strong><span>files indexed</span></p>
+  {{else if eq .Slug "typewriter"}}
+    <p class="ui-type">Server rendered, then enhanced.</p>
+  {{else if eq .Slug "system-pulse"}}
+    <div class="preview-stack"><p class="ui-pulse"><i aria-hidden="true"></i>API healthy</p><p class="ui-pulse ui-pulse--warn"><i aria-hidden="true"></i>Queue waiting</p><p class="ui-pulse ui-pulse--bad"><i aria-hidden="true"></i>Worker failed</p></div>
+  {{else if eq .Slug "liquid-tick"}}
+    <div class="preview-stack"><label class="ui-tick"><input type="checkbox" checked><span aria-hidden="true"></span><b>Mark reviewed</b></label><label class="ui-tick"><input type="checkbox"><span aria-hidden="true"></span><b>Needs another pass</b></label></div>
+  {{else if eq .Slug "stat-card"}}
+    <div class="preview-grid preview-grid--two"><article class="ui-stat"><p class="ui-kicker">Latency</p><strong>18<small>ms</small></strong><em>↓ 12% vs last week</em></article><article class="ui-stat ui-stat--down"><p class="ui-kicker">Errors</p><strong>3<small>%</small></strong><em>↑ 1.4% vs last week</em></article></div>
+  {{else if eq .Slug "feature-card"}}
+    <article class="ui-card ui-feature"><p class="ui-kicker">01 / Index</p><h3 class="ui-card__title">Know the graph</h3><p class="ui-card__copy">Files, symbols, and the few edges between them.</p></article>
+  {{else if eq .Slug "pricing-card"}}
+    <article class="ui-price is-featured"><p class="ui-kicker">Pro · featured</p><b>12<small>/mo</small></b><ul><li>Unlimited catalogues</li><li>Shared themes</li><li>Email support</li></ul><a class="ui-button ui-button--primary" href="/components">Choose Pro</a></article>
+  {{else if eq .Slug "model-card"}}
+    <div class="preview-grid preview-grid--two"><article class="ui-model"><header><h3>Claude</h3><span class="ui-badge ui-badge--accent">ready</span></header><p>Anthropic · 200k context</p></article><article class="ui-model"><header><h3>Local</h3><span class="ui-badge ui-badge--warning">warming</span></header><p>This machine · 32k context</p></article></div>
+  {{else if eq .Slug "code-window"}}
+    <section class="ui-code" aria-label="Sample handler"><header><span class="is-active">handlers.go</span><span>repo.go</span></header><pre><code>func (h *Handlers) Index(...) {
+  h.renderer.HTML(w, http.StatusOK, "pages/components/index", data)
+}</code></pre></section>
   {{end}}
 </div>
 {{end}}

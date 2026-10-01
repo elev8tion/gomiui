@@ -207,5 +207,240 @@ func catalog() []Component {
 			Markup:        `<article class="ui-card ui-spotlight"><p class="ui-kicker">Featured primitive</p><h3 class="ui-card__title">Make one thing matter</h3><p class="ui-card__copy">The accent edge creates hierarchy without adding another color.</p></article>`,
 			Accessibility: []string{"Treat the glow as decoration and preserve normal contrast.", "Use one spotlight in a group, not a glow wall."},
 		},
+		{
+			Slug: "textarea", Name: "Textarea", Category: "controls", Summary: "A multiline field with the same label, hint, and error contract as Input.", Description: "miui's completed textarea is a native control. This port keeps the visible label, the error state, and vertical resizing. Auto-grow stays a progressive enhancement, not a requirement.", Status: "stable", Tags: []string{"form", "text", "validation"},
+			Markup: `<label class="ui-field">
+  <span class="ui-field__label">Release notes</span>
+  <textarea class="ui-textarea" name="notes" rows="4">Shipped the completed form primitives.</textarea>
+  <span class="ui-field__hint">Plain text. The server stores exactly what is submitted.</span>
+</label>`,
+			Accessibility: []string{"Use a visible label, not a placeholder.", "Associate errors with aria-describedby and aria-invalid.", "Let the user resize the field."},
+		},
+		{
+			Slug: "checkbox", Name: "Checkbox", Category: "controls", Summary: "A native checkbox with a drawn box, a label, and an optional description.", Description: "The completed miui checkbox keeps a real input in the accessibility tree. Checked, unchecked, and disabled are CSS states. Indeterminate still needs a script, so this port does not fake it.", Status: "stable", Tags: []string{"form", "choice", "native"},
+			Markup: `<label class="ui-check">
+  <input type="checkbox" name="index" checked>
+  <span class="ui-check__box" aria-hidden="true"></span>
+  <span class="ui-choice"><strong>Index on save</strong><small>Rebuild the graph after each write.</small></span>
+</label>`,
+			Accessibility: []string{"The native checkbox remains the control.", "The text, not only the box, is the hit target.", "Do not replace the check mark with color alone."},
+		},
+		{
+			Slug: "radio-group", Name: "Radio group", Category: "controls", Summary: "A single-choice set rendered as a fieldset of native radios.", Description: "miui's radio group is one named set of native inputs. The fieldset and legend carry the question, so the group works before any script.", Status: "stable", Tags: []string{"form", "choice", "fieldset"},
+			Markup: `<fieldset class="ui-radios">
+  <legend>Default theme</legend>
+  <label class="ui-radio"><input type="radio" name="theme" value="dark" checked><span class="ui-radio__mark" aria-hidden="true"></span><span>Dark</span></label>
+  <label class="ui-radio"><input type="radio" name="theme" value="light"><span class="ui-radio__mark" aria-hidden="true"></span><span>Light</span></label>
+</fieldset>`,
+			Accessibility: []string{"Group radios in a fieldset with a legend.", "Share one name so the browser enforces a single choice.", "Do not use radios for on/off. That is a switch."},
+		},
+		{
+			Slug: "select", Name: "Select", Category: "controls", Summary: "A native menu with the kit's field chrome and a visible chevron.", Description: "The completed miui select is a styled native select, not a custom listbox. Keyboard, typeahead, and form posts stay with the browser.", Status: "stable", Tags: []string{"form", "menu", "native"},
+			Markup: `<label class="ui-field">
+  <span class="ui-field__label">Model</span>
+  <span class="ui-select">
+    <select name="model">
+      <option>Claude</option>
+      <option>GPT</option>
+      <option>Local</option>
+    </select>
+  </span>
+</label>`,
+			Accessibility: []string{"Keep the native select. Do not rebuild the popup.", "The label names the control.", "Do not rely on the chevron as the only affordance."},
+		},
+		{
+			Slug: "slider", Name: "Slider", Category: "controls", Summary: "A native range with the current value written next to the label.", Description: "miui's slider is a range input. The displayed value is server text, so a form post or an HTMX swap can update it without a client store.", Status: "stable", Tags: []string{"form", "range", "value"},
+			Markup: `<label class="ui-slider">
+  <span>Density <strong>64</strong></span>
+  <input type="range" name="density" min="0" max="100" value="64">
+</label>`,
+			Accessibility: []string{"Use a label that includes the current value.", "Set min, max, and value on the native range.", "Do not make the thumb the only way to read the number."},
+		},
+		{
+			Slug: "accordion", Name: "Accordion", Category: "navigation", Summary: "Stacked disclosures that open and close without a script.", Description: "The completed miui accordion manages exclusive panels in React. This port uses native details elements, so each panel is keyboard-operable and works with no JavaScript. Exclusive mode can be added later with a small server or HTMX rule.", Status: "stable", Tags: []string{"disclosure", "native", "content"},
+			Markup: `<div class="ui-accordion">
+  <details open>
+    <summary>Tokens</summary>
+    <p>Color, type, and radius live in one stylesheet.</p>
+  </details>
+  <details>
+    <summary>Motion</summary>
+    <p>Effects are optional and collapse under reduced motion.</p>
+  </details>
+</div>`,
+			Accessibility: []string{"Use summary as the control and put the panel text after it.", "Do not hide the disclosure triangle without a replacement.", "Each panel's content stays in the page, not in a script."},
+		},
+		{
+			Slug: "dialog", Name: "Dialog", Category: "feedback", Summary: "A native dialog panel with a title, explanation, and explicit actions.", Description: "miui's dialog traps focus when opened with script. The Go kit uses the dialog element. The open attribute shows it in place. showModal is the progressive step when a real modal is required.", Status: "stable", Tags: []string{"overlay", "confirm", "native"},
+			Markup: `<dialog class="ui-dialog" open>
+  <form method="dialog">
+    <header><h3>Publish this kit?</h3></header>
+    <p>The catalogue will be visible to everyone on this machine.</p>
+    <div class="ui-dialog__actions">
+      <button class="ui-button ui-button--quiet" value="cancel">Cancel</button>
+      <button class="ui-button ui-button--primary" value="publish">Publish</button>
+    </div>
+  </form>
+</dialog>`,
+			Accessibility: []string{"Give the dialog a heading.", "Provide a cancel action as well as the primary one.", "Use showModal when the rest of the page must be inert."},
+		},
+		{
+			Slug: "tooltip", Name: "Tooltip", Category: "feedback", Summary: "A short hint that appears on hover and keyboard focus.", Description: "The completed miui tooltip is a positioned note, not a replacement for a label. This port shows it with CSS on hover and focus-within, so it does not depend on a portal.", Status: "stable", Tags: []string{"hint", "focus", "hover"},
+			Markup: `<span class="ui-tip">
+  <button class="ui-button ui-button--secondary" type="button">Density</button>
+  <span class="ui-tip__bubble" role="tooltip">How tightly cards pack on the page.</span>
+</span>`,
+			Accessibility: []string{"Do not put essential instructions only in a tooltip.", "The hint must appear on keyboard focus, not only hover.", "Keep the text short."},
+		},
+		{
+			Slug: "avatar", Name: "Avatar", Category: "data", Summary: "Initials, stacked people, and an overflow count.", Description: "miui's avatar falls back from an image to initials. This port uses initials so the catalogue has no remote image dependency, and stacks them the same way.", Status: "stable", Tags: []string{"people", "identity", "stack"},
+			Markup: `<div class="ui-avatars" aria-label="Ada, Ken, and 3 more">
+  <span class="ui-avatar">A</span>
+  <span class="ui-avatar ui-avatar--b">K</span>
+  <span class="ui-avatar ui-avatar--c">M</span>
+  <span class="ui-avatar ui-avatar--more">+3</span>
+</div>`,
+			Accessibility: []string{"Name the group in text or aria-label.", "Initials are a fallback, not the person's only name in a profile.", "Do not use color as the only difference between people."},
+		},
+		{
+			Slug: "kbd", Name: "Keyboard hint", Category: "data", Summary: "A row of keys for a shortcut that is also written in words nearby.", Description: "miui's kbd renders modifier and key caps. The hint is decorative documentation. The action still needs a real control.", Status: "stable", Tags: []string{"shortcut", "keys", "docs"},
+			Markup:        `<p class="ui-kbd-line"><span>Command palette</span> <span class="ui-kbd"><kbd>⌘</kbd><kbd>K</kbd></span></p>`,
+			Accessibility: []string{"Write the action in words as well as key caps.", "Do not use a shortcut hint as the only name of a button.", "Platform-specific glyphs need a text equivalent."},
+		},
+		{
+			Slug: "separator", Name: "Separator", Category: "data", Summary: "A quiet rule, with or without a label, between related groups.", Description: "The completed miui separator is a non-interactive divider. A labeled rule uses text, not only a line.", Status: "stable", Tags: []string{"divider", "layout", "group"},
+			Markup: `<hr class="ui-separator">
+<div class="ui-separator ui-separator--label" role="separator">or</div>`,
+			Accessibility: []string{"Use hr or role=separator for a real thematic break.", "Do not announce decorative rules that sit inside a labeled group.", "A labeled separator must include the label text."},
+		},
+		{
+			Slug: "scroll-area", Name: "Scroll area", Category: "data", Summary: "A bounded region with its own scroll and a fade that signals more content.", Description: "miui's scroll area clips a region without taking over the page. The fade is a hint. The scrollbar and keyboard scrolling remain native.", Status: "stable", Tags: []string{"overflow", "region", "clip"},
+			Markup: `<div class="ui-scroll" tabindex="0">
+  <p>First finding. The graph has two edges.</p>
+  <p>Second finding. Hubs sit in the renderer and the handlers.</p>
+  <p>Third finding. Experimental canvas effects stay out of this kit.</p>
+</div>`,
+			Accessibility: []string{"Make the region focusable when the mouse is not the only way to scroll.", "Do not clip content without a visible overflow cue.", "The fade is decorative. The text is the content."},
+		},
+		{
+			Slug: "sparkline", Name: "Sparkline", Category: "data", Summary: "A one-series trend line with a text summary beside it.", Description: "miui ships sparkline as its own chart, separate from bars and donuts. This port is an inline SVG plus a caption, with no chart runtime.", Status: "stable", Tags: []string{"chart", "trend", "svg"},
+			Markup: `<figure class="ui-sparkline">
+  <svg class="ui-spark" viewBox="0 0 120 36" role="img" aria-label="Latency fell from 42 to 18">
+    <polygon points="0,28 16,24 32,26 48,18 64,20 80,12 96,14 120,6 120,36 0,36"></polygon>
+    <polyline points="0,28 16,24 32,26 48,18 64,20 80,12 96,14 120,6"></polyline>
+  </svg>
+  <figcaption>Latency <strong>18 ms</strong></figcaption>
+</figure>`,
+			Accessibility: []string{"Give the SVG a useful aria-label or a caption.", "The number in the caption is the accessible value.", "Do not use the line as the only copy of the metric."},
+		},
+		{
+			Slug: "donut", Name: "Donut chart", Category: "data", Summary: "A three-part share chart with a center value and a text legend.", Description: "miui's donut is a completed data primitive next to bar and sparkline. The Go port uses a conic gradient and a legend so the shares exist as text.", Status: "stable", Tags: []string{"chart", "share", "legend"},
+			Markup: `<div class="ui-donut-block">
+  <div class="ui-donut" style="--a: 62%; --b: 86%" role="img" aria-label="Passed 62%, running 24%, queued 14%"><span>62%</span></div>
+  <ul class="ui-legend">
+    <li><i style="--swatch: var(--accent)"></i>Passed 62%</li>
+    <li><i style="--swatch: var(--warning)"></i>Running 24%</li>
+    <li><i style="--swatch: var(--line-strong)"></i>Queued 14%</li>
+  </ul>
+</div>`,
+			Accessibility: []string{"Repeat every share in the legend.", "The center number matches the leading share.", "Color supports the label. It does not replace it."},
+		},
+		{
+			Slug: "cyber-button", Name: "Cyber button", Category: "controls", Summary: "A completed miui action with a beveled face and a hairline accent.", Description: "Cyber button is a finished primitive in miui, separate from the plain button. The port keeps the mono label and the bottom hairline, and maps the glow onto the kit accent instead of a second cyan palette.", Status: "stable", Tags: []string{"action", "accent", "button"},
+			Markup:        `<button class="ui-cyber" type="button"><span>Deploy</span></button>`,
+			Accessibility: []string{"The visible word is the action.", "The hairline and glow are decorative.", "Keep a visible focus ring."},
+		},
+		{
+			Slug: "text-shimmer", Name: "Text shimmer", Category: "effects", Summary: "A highlight that sweeps across a heading and disappears when motion is reduced.", Description: "miui replaced a framer-motion shimmer with one CSS gradient. The same treatment is here. Reduced motion keeps solid text.", Status: "experimental", Tags: []string{"motion", "type", "css"},
+			Markup:        `<p class="ui-shimmer">Indexing the graph</p>`,
+			Accessibility: []string{"The words stay readable with motion off.", "Do not shimmer body copy.", "The effect is decoration, not a status."},
+		},
+		{
+			Slug: "marquee", Name: "Marquee", Category: "effects", Summary: "A looping strip of labels, with a static wrap when motion is reduced.", Description: "The completed miui marquee is a CSS translation of a duplicated track. Nothing important should live only inside the moving strip.", Status: "experimental", Tags: []string{"motion", "loop", "css"},
+			Markup: `<div class="ui-marquee">
+  <div class="ui-marquee__track">
+    <span>Go</span><span>HTMX</span><span>SQLite</span><span>CSS</span>
+    <span>Go</span><span>HTMX</span><span>SQLite</span><span>CSS</span>
+  </div>
+</div>`,
+			Accessibility: []string{"Duplicate the track only for the loop, not as extra information.", "Reduced motion shows the labels without scrolling.", "Do not put a required action inside a marquee."},
+		},
+		{
+			Slug: "border-beam", Name: "Border beam", Category: "effects", Summary: "A thin accent that travels the top edge of one featured surface.", Description: "miui's border beam is a CSS pass over a card edge. Use it once. The card's text does not depend on the beam.", Status: "experimental", Tags: []string{"motion", "border", "accent"},
+			Markup:        `<article class="ui-card ui-beam"><p class="ui-kicker">Live</p><h3 class="ui-card__title">Edge light</h3><p class="ui-card__copy">One moving line. The content stays still.</p></article>`,
+			Accessibility: []string{"The beam is decorative.", "Keep text contrast on the card itself.", "Use one beam in a group."},
+		},
+		{
+			Slug: "counter", Name: "Counter", Category: "effects", Summary: "A large final number with its unit written beside it.", Description: "miui animates a counter up to a value. The server-rendered port prints the final number so the metric exists without waiting for an animation.", Status: "stable", Tags: []string{"metric", "number", "text"},
+			Markup:        `<p class="ui-counter"><strong>1,284</strong><span>files indexed</span></p>`,
+			Accessibility: []string{"The number is real text, not a canvas.", "Include the unit.", "Do not rely on the count-up to reveal the value."},
+		},
+		{
+			Slug: "typewriter", Name: "Typewriter", Category: "effects", Summary: "A single line that types itself, and shows the full line when motion is reduced.", Description: "miui's typewriter is a finished CSS effect. The full sentence is in the HTML. The steps animation only reveals it.", Status: "experimental", Tags: []string{"motion", "type", "css"},
+			Markup:        `<p class="ui-type">Server rendered, then enhanced.</p>`,
+			Accessibility: []string{"The full string is in the element.", "Reduced motion shows the whole line at once.", "Do not type out instructions the user must read to proceed."},
+		},
+		{
+			Slug: "system-pulse", Name: "System pulse", Category: "effects", Summary: "A status dot with a word for healthy, waiting, and failed.", Description: "miui's system pulse pairs a dot with a label. The port keeps three tones and never uses the dot alone.", Status: "stable", Tags: []string{"status", "dot", "health"},
+			Markup: `<p class="ui-pulse"><i aria-hidden="true"></i>API healthy</p>
+<p class="ui-pulse ui-pulse--warn"><i aria-hidden="true"></i>Queue waiting</p>
+<p class="ui-pulse ui-pulse--bad"><i aria-hidden="true"></i>Worker failed</p>`,
+			Accessibility: []string{"The word is the status.", "The dot is aria-hidden.", "Do not use green, amber, or red alone."},
+		},
+		{
+			Slug: "liquid-tick", Name: "Liquid tick", Category: "effects", Summary: "A checkbox whose box fills when it is checked.", Description: "miui's liquid tick is a completed effect on top of a native checkbox. The check state is the input. The fill is decoration.", Status: "experimental", Tags: []string{"motion", "checkbox", "css"},
+			Markup: `<label class="ui-tick">
+  <input type="checkbox" checked>
+  <span aria-hidden="true"></span>
+  <b>Mark reviewed</b>
+</label>`,
+			Accessibility: []string{"Use a native checkbox.", "The label names the action.", "The fill must not be required to see the checked state."},
+		},
+		{
+			Slug: "stat-card", Name: "Stat card", Category: "blocks", Summary: "One metric, a direction, and a comparison written in words.", Description: "miui's stat card is a completed block. The delta includes a sign and an arrow so a drop can be good or bad without depending on color.", Status: "stable", Tags: []string{"metric", "delta", "block"},
+			Markup: `<article class="ui-stat">
+  <p class="ui-kicker">Latency</p>
+  <strong>18<small>ms</small></strong>
+  <em>↓ 12% vs last week</em>
+</article>`,
+			Accessibility: []string{"Include the sign and the comparison, not only a color.", "The unit sits with the number.", "One card, one metric."},
+		},
+		{
+			Slug: "feature-card", Name: "Feature card", Category: "blocks", Summary: "A short capability card with a kicker, a title, and one sentence.", Description: "The completed miui feature card is a composed surface, not a new primitive. It reuses the card and can take a single border beam.", Status: "stable", Tags: []string{"block", "marketing", "card"},
+			Markup: `<article class="ui-card ui-feature">
+  <p class="ui-kicker">01 / Index</p>
+  <h3 class="ui-card__title">Know the graph</h3>
+  <p class="ui-card__copy">Files, symbols, and the few edges between them.</p>
+</article>`,
+			Accessibility: []string{"Use a real heading.", "Keep the sentence short enough to scan.", "Do not make the whole card a link unless the entire surface is one action."},
+		},
+		{
+			Slug: "pricing-card", Name: "Pricing card", Category: "blocks", Summary: "A plan, a price, a short list, and one action.", Description: "miui's pricing card is a finished block. The featured plan is marked with text, not only a brighter border.", Status: "stable", Tags: []string{"block", "price", "plan"},
+			Markup: `<article class="ui-price is-featured">
+  <p class="ui-kicker">Pro · featured</p>
+  <b>12<small>/mo</small></b>
+  <ul><li>Unlimited catalogues</li><li>Shared themes</li><li>Email support</li></ul>
+  <a class="ui-button ui-button--primary" href="/components">Choose Pro</a>
+</article>`,
+			Accessibility: []string{"Say which plan is featured in text.", "The price includes its period.", "The action is a real link or button."},
+		},
+		{
+			Slug: "model-card", Name: "Model card", Category: "blocks", Summary: "A model name, its provider, and a written status.", Description: "The completed miui model card summarizes one model. Status is a badge with a word, matching the kit's rule that color never stands alone.", Status: "stable", Tags: []string{"block", "model", "status"},
+			Markup: `<article class="ui-model">
+  <header><h3>Claude</h3><span class="ui-badge ui-badge--accent">ready</span></header>
+  <p>Anthropic · 200k context</p>
+</article>`,
+			Accessibility: []string{"The status word is visible.", "Provider and context are text.", "Use a heading for the model name."},
+		},
+		{
+			Slug: "code-window", Name: "Code window", Category: "blocks", Summary: "A tabbed code surface with a real pre and code element.", Description: "miui's code window is a finished block beside Terminal. Tabs here are static labels. The code itself is selectable text.", Status: "stable", Tags: []string{"block", "code", "tabs"},
+			Markup: `<section class="ui-code" aria-label="Sample handler">
+  <header><span class="is-active">handlers.go</span><span>repo.go</span></header>
+  <pre><code>func (h *Handlers) Index(w http.ResponseWriter, r *http.Request) {
+  h.renderer.HTML(w, http.StatusOK, "pages/components/index", data)
+}</code></pre>
+</section>`,
+			Accessibility: []string{"Use pre and code for the sample.", "Name the window.", "Tabs that do not switch must not pretend to be selected controls."},
+		},
 	}
 }
