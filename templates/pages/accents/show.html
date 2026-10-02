@@ -1,0 +1,8 @@
+{{define "pages/accents/show-content"}}
+<section class="accent-page">
+  <a class="back-link" href="/accents">← All accents</a>
+  <p class="ui-kicker">Saved preset</p>
+  <h1>{{(index .Data "SelectedPreset").Name}}</h1>
+  <pre class="code-block accent-code"><code>{{index .Data "SelectedCode"}}</code></pre>
+</section>
+{{end}}

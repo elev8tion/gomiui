@@ -8,7 +8,7 @@
   <title>{{.Title}}</title>
   <link rel="stylesheet" href="/static/css/app.css">
   <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" defer></script>
-  <script src="/static/js/app.js" defer></script>
+  <script src="/static/js/app.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -21,6 +21,7 @@
       <p class="topbar__tagline">a Go-native interface kit</p>
       <nav class="topbar__nav" aria-label="Global navigation">
         <a href="/components">Components</a>
+        <a href="/accents">Accent</a>
         <a href="/tasks">HTMX lab</a>
         <a class="theme-toggle" href="{{index .Data "ThemeURL"}}">
           <span aria-hidden="true">{{if eq (index .Data "Theme") "dark"}}☼{{else}}◐{{end}}</span>
@@ -30,6 +31,7 @@
     </div>
   </header>
   <main id="main-content" class="page-shell">
+    {{template "partials/accents/studio" .}}
     {{include .Content .}}
   </main>
   <footer class="site-footer">

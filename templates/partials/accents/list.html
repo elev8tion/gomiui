@@ -1,0 +1,7 @@
+{{define "partials/accents/list"}}
+<ul class="accent-presets">
+  {{range index .Data "Presets"}}
+    {{template "partials/accents/row" .}}
+  {{end}}
+</ul>
+{{end}}

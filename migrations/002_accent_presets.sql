@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS accent_presets (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL COLLATE NOCASE,
+  accent TEXT NOT NULL,
+  accent_strong TEXT NOT NULL,
+  accent_ink TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_accent_presets_name ON accent_presets(name);

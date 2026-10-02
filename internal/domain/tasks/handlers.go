@@ -5,16 +5,18 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/kcdacre8tor/gomiui/internal/domain/accents"
 	"github.com/kcdacre8tor/gomiui/internal/web/render"
 )
 
 type Handlers struct {
 	service  *Service
+	accents  *accents.Service
 	renderer *render.Renderer
 }
 
-func NewHandlers(service *Service, renderer *render.Renderer) *Handlers {
-	return &Handlers{service: service, renderer: renderer}
+func NewHandlers(service *Service, accents *accents.Service, renderer *render.Renderer) *Handlers {
+	return &Handlers{service: service, accents: accents, renderer: renderer}
 }
 
 func (h *Handlers) Index(w http.ResponseWriter, r *http.Request) {
@@ -27,11 +29,11 @@ func (h *Handlers) Index(w http.ResponseWriter, r *http.Request) {
 	h.renderer.HTML(w, http.StatusOK, "layouts/base", render.ViewData{
 		Title:   "Tasks",
 		Content: "pages/tasks/index-content",
-		Data: map[string]any{
+		Data: h.accents.Decorate(r.Context(), r, map[string]any{
 			"Tasks":    tasks,
 			"Theme":    "dark",
 			"ThemeURL": "/tasks?theme=light",
-		},
+		}),
 	})
 }
 

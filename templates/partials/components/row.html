@@ -52,6 +52,23 @@
     {{else if eq .Slug "pricing-card"}}<span class="mini-price"><b>12</b><i>/mo</i></span>
     {{else if eq .Slug "model-card"}}<span class="mini-model"><b>Claude</b><span class="ui-badge ui-badge--accent">ready</span></span>
     {{else if eq .Slug "code-window"}}<span class="mini-terminal"><span>handlers.go</span><b>HTML</b></span>
+    {{else if eq .Slug "label"}}<span class="ui-label">Name <em>*</em></span>
+    {{else if eq .Slug "low-power"}}<label class="ui-switch ui-switch--small"><input type="checkbox" checked><span class="ui-switch__track" aria-hidden="true"><span></span></span><span>Low</span></label>
+    {{else if eq .Slug "theme-selector"}}<span class="ui-themes"><i style="--swatch:#34d399"></i><i style="--swatch:#a78bfa"></i><i style="--swatch:#fb923c"></i></span>
+    {{else if eq .Slug "edge-handle"}}<span class="mini-edge">›</span>
+    {{else if eq .Slug "limelight-nav"}}<span class="ui-lime"><a>Home</a><a class="is-active">Kit</a></span>
+    {{else if eq .Slug "smoke-nav"}}<span class="mini-smoke"><b>gomiui</b><i>Kit</i></span>
+    {{else if eq .Slug "flow-button"}}<button class="ui-flow" type="button"><i aria-hidden="true"></i><b>Go</b></button>
+    {{else if eq .Slug "save-switch"}}<button class="ui-save is-saved" type="button"><span>Saved</span></button>
+    {{else if eq .Slug "film-grain"}}<span class="mini-grain"></span>
+    {{else if eq .Slug "not-found"}}<strong class="mini-count">404</strong>
+    {{else if eq .Slug "weather-widget"}}<span class="mini-stat"><b>18°</b><em>cloud</em></span>
+    {{else if eq .Slug "research-progress"}}<span class="mini-acc"><b>Sources</b><b>Reading</b></span>
+    {{else if eq .Slug "ai-input"}}<span class="mini-input">Ask the kit <span>↵</span></span>
+    {{else if eq .Slug "agent-grid"}}<span class="mini-model"><b>Research</b><span class="ui-badge ui-badge--accent">active</span></span>
+    {{else if eq .Slug "permission-dialog"}}<span class="mini-dialog"><strong>Allow?</strong><i></i></span>
+    {{else if eq .Slug "platform-faq"}}<span class="mini-acc"><b>Keys</b><b>Offline</b></span>
+    {{else if eq .Slug "model-comparison"}}<span class="mini-compare"><b>A</b><b>B</b></span>
     {{end}}
   </div>
   <footer class="component-card__footer">

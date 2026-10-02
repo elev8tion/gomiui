@@ -5,16 +5,18 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/kcdacre8tor/gomiui/internal/domain/accents"
 	"github.com/kcdacre8tor/gomiui/internal/web/render"
 )
 
 type Handlers struct {
 	service  *Service
+	accents  *accents.Service
 	renderer *render.Renderer
 }
 
-func NewHandlers(service *Service, renderer *render.Renderer) *Handlers {
-	return &Handlers{service: service, renderer: renderer}
+func NewHandlers(service *Service, accents *accents.Service, renderer *render.Renderer) *Handlers {
+	return &Handlers{service: service, accents: accents, renderer: renderer}
 }
 
 func (h *Handlers) Index(w http.ResponseWriter, r *http.Request) {
@@ -29,7 +31,7 @@ func (h *Handlers) Index(w http.ResponseWriter, r *http.Request) {
 	h.renderer.HTML(w, http.StatusOK, "layouts/base", render.ViewData{
 		Title:   "gomiui — server-rendered interface kit",
 		Content: "pages/components/index-content",
-		Data:    indexData(items, categories, query, category, r.URL.Query().Get("theme")),
+		Data:    h.withAccent(r, indexData(items, categories, query, category, r.URL.Query().Get("theme"))),
 	})
 }
 
@@ -48,13 +50,13 @@ func (h *Handlers) Show(w http.ResponseWriter, r *http.Request) {
 	h.renderer.HTML(w, http.StatusOK, "layouts/base", render.ViewData{
 		Title:   component.Name + " — gomiui",
 		Content: "pages/components/show-content",
-		Data: map[string]any{
+		Data: h.withAccent(r, map[string]any{
 			"Selected":   component,
 			"Categories": categories,
 			"Components": items,
 			"Theme":      theme(r.URL.Query().Get("theme")),
 			"ThemeURL":   themeURL(r.URL, r.URL.Query().Get("theme")),
-		},
+		}),
 	})
 }
 
@@ -67,6 +69,13 @@ func (h *Handlers) ListFragment(w http.ResponseWriter, r *http.Request) {
 	h.renderer.HTML(w, http.StatusOK, "partials/components/list", render.ViewData{
 		Data: map[string]any{"Components": items},
 	})
+}
+
+func (h *Handlers) withAccent(r *http.Request, data map[string]any) map[string]any {
+	if h.accents == nil {
+		return data
+	}
+	return h.accents.Decorate(r.Context(), r, data)
 }
 
 func indexData(items []Component, categories []Category, query, active, requestedTheme string) map[string]any {

@@ -1,0 +1,38 @@
+{{define "partials/accents/form"}}
+{{with index .Data "Palette"}}
+<form id="accent-apply" class="accent-form" method="post" action="/accents/apply" hx-post="/accents/apply" hx-target="#accent-studio" hx-swap="outerHTML">
+  <input type="hidden" name="theme" value="{{index $.Data "Theme"}}">
+  <div class="accent-picker" data-accent-picker>
+    <span>Custom color</span>
+    <div class="accent-picker__row">
+      <button class="accent-swatch-btn" type="button" data-accent-open aria-expanded="false" aria-controls="accent-panel" aria-label="Open color picker" style="--swatch: {{.Accent}}"></button>
+      <input id="accent-hex" class="ui-input" name="accent" type="text" inputmode="text" spellcheck="false" maxlength="7" value="{{.Accent}}" aria-label="Custom hex color" autocomplete="off" pattern="#?[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?" data-accent-hex>
+    </div>
+    <div id="accent-panel" class="accent-panel" data-accent-panel hidden>
+      <div class="accent-panel__sv" data-accent-sv role="application" aria-label="Color field">
+        <i data-accent-cursor></i>
+      </div>
+      <label class="accent-panel__hue">Hue
+        <input id="accent-hue" type="range" min="0" max="360" value="160" data-accent-hue>
+      </label>
+      <button class="ui-button ui-button--primary" type="button" data-accent-done>Use this color</button>
+    </div>
+  </div>
+  <button class="ui-button ui-button--secondary" type="submit">Apply</button>
+</form>
+<form class="accent-save" method="post" action="/accents" hx-post="/accents" hx-target="#accent-studio" hx-swap="outerHTML">
+  <input type="hidden" name="accent" value="{{.Accent}}">
+  <input type="hidden" name="strong" value="{{.Strong}}">
+  <input type="hidden" name="ink" value="{{.Ink}}">
+  <label>
+    <span class="sr-only">Preset name</span>
+    <input class="ui-input" name="name" maxlength="40" placeholder="Name this preset" required>
+  </label>
+  <button class="ui-button ui-button--primary" type="submit">Save preset</button>
+</form>
+<form method="post" action="/accents/reset" hx-post="/accents/reset" hx-target="#accent-studio" hx-swap="outerHTML">
+  <input type="hidden" name="theme" value="{{index $.Data "Theme"}}">
+  <button class="ui-button ui-button--quiet" type="submit">Use theme default</button>
+</form>
+{{end}}
+{{end}}

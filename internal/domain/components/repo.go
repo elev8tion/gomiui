@@ -442,5 +442,162 @@ func catalog() []Component {
 </section>`,
 			Accessibility: []string{"Use pre and code for the sample.", "Name the window.", "Tabs that do not switch must not pretend to be selected controls."},
 		},
+		{
+			Slug: "label", Name: "Label", Category: "controls", Summary: "The visible name of a field, with a required mark that is not the only signal.", Description: "miui's label is a completed form primitive. The asterisk is decorative. The required state still belongs on the control.", Status: "stable", Tags: []string{"form", "label", "required"},
+			Markup: `<label class="ui-label" for="project">Project name <em aria-hidden="true">*</em></label>
+<input id="project" class="ui-input" name="project" required>`,
+			Accessibility: []string{"Tie the label to the control with for and id.", "Put required on the control, not only on the asterisk.", "Do not use placeholder text as the label."},
+		},
+		{
+			Slug: "low-power", Name: "Low-power toggle", Category: "controls", Summary: "An explicit switch for taking the cheap visual path.", Description: "miui's low-power toggle is a finished escape hatch, separate from the system switch. The label says which mode is on.", Status: "stable", Tags: []string{"toggle", "motion", "preference"},
+			Markup: `<label class="ui-switch">
+  <input type="checkbox" name="low_power">
+  <span class="ui-switch__track" aria-hidden="true"><span></span></span>
+  <span>Full motion</span>
+</label>`,
+			Accessibility: []string{"The label names the current or resulting mode.", "Use a native checkbox.", "Do not hide the control in a corner without a name."},
+		},
+		{
+			Slug: "theme-selector", Name: "Theme selector", Category: "navigation", Summary: "A row of named theme swatches with one selected choice.", Description: "miui's theme selector is a completed radiogroup of color choices. Each swatch has a text name. Color is not the only label.", Status: "stable", Tags: []string{"theme", "radio", "swatch"},
+			Markup: `<div class="ui-themes" role="radiogroup" aria-label="Theme">
+  <label><input type="radio" name="kit-theme" value="forest" checked><i style="--swatch:#34d399"></i><span>Forest</span></label>
+  <label><input type="radio" name="kit-theme" value="observatory"><i style="--swatch:#a78bfa"></i><span>Observatory</span></label>
+  <label><input type="radio" name="kit-theme" value="sunset"><i style="--swatch:#fb923c"></i><span>Sunset</span></label>
+</div>`,
+			Accessibility: []string{"Use a radiogroup and one name.", "Every swatch has a text name.", "The selected ring is extra, not the name."},
+		},
+		{
+			Slug: "edge-handle", Name: "Edge handle", Category: "navigation", Summary: "A button pinned to a panel edge that stays available to the keyboard.", Description: "miui's edge handle reveals a side panel. Auto-hide is off. The handle remains a button with an accessible name in every state.", Status: "stable", Tags: []string{"panel", "edge", "button"},
+			Markup: `<div class="ui-edge">
+  <button type="button" aria-expanded="false" aria-label="Open inspector">›</button>
+  <p>Inspector stays closed until the handle is used.</p>
+</div>`,
+			Accessibility: []string{"The handle is a button with a text name.", "Reflect open state with aria-expanded.", "Do not remove the handle on a timer."},
+		},
+		{
+			Slug: "limelight-nav", Name: "Limelight nav", Category: "navigation", Summary: "A compact nav whose active item carries a soft accent glow.", Description: "miui measures the glow onto the active item. This port places the glow with CSS on the current link, so it works with no layout script.", Status: "stable", Tags: []string{"nav", "active", "glow"},
+			Markup: `<nav class="ui-lime" aria-label="Primary">
+  <a href="#home">Home</a>
+  <a class="is-active" href="#kit" aria-current="page">Kit</a>
+  <a href="#lab">Lab</a>
+</nav>`,
+			Accessibility: []string{"Mark the current page with aria-current.", "The glow is decoration. The text is the link name.", "Keep the links real."},
+		},
+		{
+			Slug: "smoke-nav", Name: "Smoke nav", Category: "navigation", Summary: "A frosted top bar with a brand, links, and one action.", Description: "miui's smoke nav is a completed sticky bar. The Go port keeps the blur, the current link, and a wrapping row so it does not overflow a phone.", Status: "stable", Tags: []string{"nav", "bar", "blur"},
+			Markup: `<header class="ui-smoke">
+  <strong>gomiui</strong>
+  <nav aria-label="Product">
+    <a class="is-active" href="#components" aria-current="page">Components</a>
+    <a href="#tasks">Lab</a>
+    <a href="#docs">Docs</a>
+  </nav>
+  <a class="ui-button ui-button--primary ui-button--small" href="#components">Open</a>
+</header>`,
+			Accessibility: []string{"Name the navigation.", "Mark the current link.", "Let the row wrap instead of forcing a horizontal scroll."},
+		},
+		{
+			Slug: "flow-button", Name: "Flow button", Category: "effects", Summary: "A pill that fills from the center and slides an arrow through on hover.", Description: "miui's flow button is a finished CSS effect: a growing circle, a label, and an arrow. Reduced motion drops the travel and leaves the action.", Status: "experimental", Tags: []string{"motion", "button", "hover"},
+			Markup:        `<button class="ui-flow" type="button"><i aria-hidden="true"></i><b>Continue</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button>`,
+			Accessibility: []string{"The word is the action.", "The circle and arrow are decorative.", "Focus shows the same fill as hover."},
+		},
+		{
+			Slug: "save-switch", Name: "Save switch", Category: "effects", Summary: "A pill that reads Saved when the item is kept.", Description: "miui's save switch floods the pill when the bookmark is on. This port shows the saved state in the label. The motion is optional.", Status: "experimental", Tags: []string{"motion", "save", "toggle"},
+			Markup:        `<button class="ui-save is-saved" type="button" aria-pressed="true"><span>Saved</span></button>`,
+			Accessibility: []string{"Use aria-pressed for the saved state.", "The visible word changes with the state.", "Do not rely on the bookmark animation alone."},
+		},
+		{
+			Slug: "film-grain", Name: "Film grain", Category: "effects", Summary: "A quiet noise tile over a surface. It never takes pointer or reading focus.", Description: "miui's overlay set includes a film-grain tile made from an inline noise image. It is aria-hidden and does not block clicks.", Status: "experimental", Tags: []string{"overlay", "texture", "decoration"},
+			Markup:        `<div class="ui-grain" aria-hidden="true"><p>Texture only. The words stay in the page.</p></div>`,
+			Accessibility: []string{"Hide decorative grain from assistive tech.", "Do not put the only copy of a message inside the overlay.", "Keep the noise light enough to preserve contrast."},
+		},
+		{
+			Slug: "not-found", Name: "Not found", Category: "blocks", Summary: "A missing-page block with a reason and one way back.", Description: "miui's ghost 404 is a completed block. The canvas particles are skipped. The number, the sentence, and the return link remain.", Status: "stable", Tags: []string{"empty", "error", "block"},
+			Markup: `<section class="ui-void" aria-labelledby="void-title">
+  <b>404</b>
+  <h3 id="void-title">That page is not in the kit.</h3>
+  <p>The address does not match a component.</p>
+  <a class="ui-button ui-button--secondary" href="/components">Back to the catalogue</a>
+</section>`,
+			Accessibility: []string{"Explain what is missing in text.", "Give one way back.", "Do not use a particle field as the message."},
+		},
+		{
+			Slug: "weather-widget", Name: "Weather widget", Category: "blocks", Summary: "A city, a temperature, and the condition written out.", Description: "miui's weather widget is a completed block fed by data. This sample is server text: city, degrees, humidity, and wind. The icon is not the only condition.", Status: "stable", Tags: []string{"widget", "weather", "metric"},
+			Markup: `<article class="ui-weather">
+  <p class="ui-kicker">San Francisco</p>
+  <strong>18°</strong>
+  <span>Partly cloudy · humidity 62% · wind 14 km/h</span>
+</article>`,
+			Accessibility: []string{"Write the condition, not only an icon.", "Include the unit.", "The city names the place."},
+		},
+		{
+			Slug: "research-progress", Name: "Research progress", Category: "blocks", Summary: "A written list of research steps with one current line.", Description: "miui's research progress cycles status phrases in script. The port lists the steps and marks the current one, so the state is visible without a timer.", Status: "stable", Tags: []string{"status", "steps", "research"},
+			Markup: `<ol class="ui-research" aria-label="Research">
+  <li class="is-done">Gathering sources</li>
+  <li class="is-now" aria-current="step">Reading documentation</li>
+  <li>Writing the report</li>
+</ol>`,
+			Accessibility: []string{"Use an ordered list for the sequence.", "Mark only one current step.", "Do not replace the step name with a spinner."},
+		},
+		{
+			Slug: "ai-input", Name: "AI input", Category: "blocks", Summary: "A prompt field with a submit action and a visible label.", Description: "miui's AI input morphs from a pill into a field. The useful completed surface is the field itself: a label, a textarea, and a submit button that works as a normal form.", Status: "stable", Tags: []string{"prompt", "form", "block"},
+			Markup: `<form class="ui-ask" action="/components" method="get">
+  <label class="ui-field">
+    <span class="ui-field__label">Ask the kit</span>
+    <textarea class="ui-textarea" name="q" rows="3" placeholder="Which control opens a native menu?"></textarea>
+  </label>
+  <button class="ui-button ui-button--primary" type="submit">Send</button>
+</form>`,
+			Accessibility: []string{"The field has a visible label.", "Submit is a real button.", "Placeholder text is a hint, not the name."},
+		},
+		{
+			Slug: "agent-grid", Name: "Agent grid", Category: "blocks", Summary: "A responsive grid of agents with role, status, and one action.", Description: "miui's agent grid is a completed block of profile cards. Status is a word. The run action is a button, not the whole card.", Status: "stable", Tags: []string{"grid", "agent", "card"},
+			Markup: `<div class="ui-agents">
+  <article class="ui-agent">
+    <header><h3>Research</h3><span class="ui-badge ui-badge--accent">active</span></header>
+    <p>Reads sources and writes a cited note.</p>
+    <button class="ui-button ui-button--secondary ui-button--small" type="button">Run</button>
+  </article>
+</div>`,
+			Accessibility: []string{"Each agent has a heading and a status word.", "The action is a button inside the card.", "The grid wraps instead of squeezing the cards."},
+		},
+		{
+			Slug: "permission-dialog", Name: "Permission dialog", Category: "feedback", Summary: "A consent panel that lists each scope and asks for an explicit yes or no.", Description: "miui's permission dialog is a completed consent block. Required scopes are marked in text. Authorize and deny are separate buttons.", Status: "stable", Tags: []string{"consent", "dialog", "scope"},
+			Markup: `<dialog class="ui-dialog" open>
+  <form method="dialog">
+    <header><h3>Allow workspace access?</h3></header>
+    <label class="ui-check"><input type="checkbox" checked disabled><span class="ui-check__box" aria-hidden="true"></span><span class="ui-choice"><strong>Read files</strong><small>Required to answer questions about this repo.</small></span></label>
+    <label class="ui-check"><input type="checkbox"><span class="ui-check__box" aria-hidden="true"></span><span class="ui-choice"><strong>Run tools</strong><small>Optional. Lets the agent write and test.</small></span></label>
+    <div class="ui-dialog__actions">
+      <button class="ui-button ui-button--quiet" value="deny">Deny</button>
+      <button class="ui-button ui-button--primary" value="allow">Allow</button>
+    </div>
+  </form>
+</dialog>`,
+			Accessibility: []string{"Name every scope in text.", "Say which scopes are required.", "Offer deny as well as allow."},
+		},
+		{
+			Slug: "platform-faq", Name: "Platform FAQ", Category: "blocks", Summary: "A titled list of questions that open without a script.", Description: "miui's platform FAQ is a completed accordion block. Native details keep every answer in the page.", Status: "stable", Tags: []string{"faq", "accordion", "content"},
+			Markup: `<section class="ui-faq" aria-labelledby="faq-title">
+  <p class="ui-kicker">Platform</p>
+  <h3 id="faq-title">Common questions</h3>
+  <div class="ui-accordion">
+    <details open><summary>Where do keys live?</summary><p>On this machine. They are not sent to a second store.</p></details>
+    <details><summary>Does it work offline?</summary><p>The catalogue is server-rendered and has no animation runtime.</p></details>
+  </div>
+</section>`,
+			Accessibility: []string{"The section has a heading.", "Each question is a summary.", "Answers are text in the page, not loaded later."},
+		},
+		{
+			Slug: "model-comparison", Name: "Model comparison", Category: "blocks", Summary: "Two model answers side by side, with latency written on each.", Description: "miui's comparison block is a finished layout for a prompt and two results. The sample is static server text, so both columns exist before any request runs.", Status: "stable", Tags: []string{"compare", "model", "layout"},
+			Markup: `<section class="ui-compare" aria-label="Model comparison">
+  <p class="ui-kicker">Prompt · explain the catalogue</p>
+  <div class="ui-compare__grid">
+    <article><header><h3>Claude</h3><span>1.2s</span></header><p>A server-rendered kit. HTML first.</p></article>
+    <article><header><h3>Local</h3><span>2.8s</span></header><p>Same answer, run on this machine.</p></article>
+  </div>
+</section>`,
+			Accessibility: []string{"Name both models.", "Put the latency in text.", "Stack the columns on a narrow screen."},
+		},
 	}
 }

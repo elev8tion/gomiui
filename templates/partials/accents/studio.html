@@ -1,0 +1,20 @@
+{{define "partials/accents/studio"}}
+<section id="accent-studio" class="accent-studio" aria-label="Accent color">
+  <div class="accent-studio__controls">
+    {{template "partials/accents/form" .}}
+    {{template "partials/accents/flash" .}}
+    {{template "partials/accents/list" .}}
+  </div>
+  <div class="accent-studio__code">
+    <div class="section-heading">
+      <div>
+        <p class="ui-kicker">Tokens</p>
+        <h2>Code</h2>
+      </div>
+      <button class="ui-button ui-button--quiet ui-button--small" type="button" data-copy-target="#accent-code">Copy CSS</button>
+    </div>
+    <pre id="accent-code" class="code-block accent-code"><code>{{(index .Data "Palette").Code}}</code></pre>
+  </div>
+</section>
+<style id="accent-override" hx-swap-oob="outerHTML">{{with index .Data "Palette"}}{{if .Custom}}html { --accent: {{.Accent}}; --accent-strong: {{.Strong}}; --accent-ink: {{.Ink}}; }{{end}}{{end}}</style>
+{{end}}

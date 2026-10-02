@@ -26,6 +26,9 @@ func TestCompletedMiuiPortsAreCatalogued(t *testing.T) {
 		"dialog", "tooltip", "avatar", "kbd", "separator", "scroll-area",
 		"sparkline", "donut", "cyber-button", "counter", "system-pulse",
 		"stat-card", "feature-card", "pricing-card", "model-card", "code-window",
+		"label", "low-power", "theme-selector", "edge-handle", "limelight-nav", "smoke-nav",
+		"not-found", "weather-widget", "research-progress", "ai-input", "agent-grid",
+		"permission-dialog", "platform-faq", "model-comparison",
 	}
 	for _, slug := range want {
 		item, ok, err := repo.Get(context.Background(), slug)

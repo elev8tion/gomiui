@@ -90,6 +90,40 @@
     <section class="ui-code" aria-label="Sample handler"><header><span class="is-active">handlers.go</span><span>repo.go</span></header><pre><code>func (h *Handlers) Index(...) {
   h.renderer.HTML(w, http.StatusOK, "pages/components/index", data)
 }</code></pre></section>
+  {{else if eq .Slug "label"}}
+    <label class="ui-field"><span class="ui-label">Project name <em aria-hidden="true">*</em></span><input class="ui-input" name="project" value="gomiui" required></label>
+  {{else if eq .Slug "low-power"}}
+    <div class="preview-stack"><label class="ui-switch"><input type="checkbox"><span class="ui-switch__track" aria-hidden="true"><span></span></span><span>Full motion</span></label><label class="ui-switch"><input type="checkbox" checked><span class="ui-switch__track" aria-hidden="true"><span></span></span><span>Low power</span></label></div>
+  {{else if eq .Slug "theme-selector"}}
+    <div class="ui-themes" role="radiogroup" aria-label="Theme"><label><input type="radio" name="preview-swatch" checked><i style="--swatch:#34d399"></i><span>Forest</span></label><label><input type="radio" name="preview-swatch"><i style="--swatch:#a78bfa"></i><span>Observatory</span></label><label><input type="radio" name="preview-swatch"><i style="--swatch:#fb923c"></i><span>Sunset</span></label></div>
+  {{else if eq .Slug "edge-handle"}}
+    <div class="ui-edge"><button type="button" aria-expanded="false" aria-label="Open inspector">›</button><p>Inspector stays closed until the handle is used.</p></div>
+  {{else if eq .Slug "limelight-nav"}}
+    <nav class="ui-lime" aria-label="Primary"><a href="#home">Home</a><a class="is-active" href="#kit" aria-current="page">Kit</a><a href="#lab">Lab</a></nav>
+  {{else if eq .Slug "smoke-nav"}}
+    <header class="ui-smoke"><strong>gomiui</strong><nav aria-label="Product"><a class="is-active" href="#components" aria-current="page">Components</a><a href="#tasks">Lab</a><a href="#docs">Docs</a></nav><a class="ui-button ui-button--primary ui-button--small" href="#components">Open</a></header>
+  {{else if eq .Slug "flow-button"}}
+    <div class="preview-center"><button class="ui-flow" type="button"><i aria-hidden="true"></i><b>Continue</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button><p class="preview-note">Hover or focus the pill.</p></div>
+  {{else if eq .Slug "save-switch"}}
+    <div class="preview-row"><button class="ui-save" type="button" aria-pressed="false"><span>Save</span></button><button class="ui-save is-saved" type="button" aria-pressed="true"><span>Saved</span></button></div>
+  {{else if eq .Slug "film-grain"}}
+    <div class="ui-grain" aria-hidden="true"><p>Texture only. The words stay in the page.</p></div>
+  {{else if eq .Slug "not-found"}}
+    <section class="ui-void"><b>404</b><h3>That page is not in the kit.</h3><p>The address does not match a component.</p><a class="ui-button ui-button--secondary" href="/components">Back to the catalogue</a></section>
+  {{else if eq .Slug "weather-widget"}}
+    <article class="ui-weather"><p class="ui-kicker">San Francisco</p><strong>18°</strong><span>Partly cloudy · humidity 62% · wind 14 km/h</span></article>
+  {{else if eq .Slug "research-progress"}}
+    <ol class="ui-research" aria-label="Research"><li class="is-done">Gathering sources</li><li class="is-now" aria-current="step">Reading documentation</li><li>Writing the report</li></ol>
+  {{else if eq .Slug "ai-input"}}
+    <form class="ui-ask"><label class="ui-field"><span class="ui-field__label">Ask the kit</span><textarea class="ui-textarea" rows="3">Which control opens a native menu?</textarea></label><button class="ui-button ui-button--primary" type="button">Send</button></form>
+  {{else if eq .Slug "agent-grid"}}
+    <div class="ui-agents"><article class="ui-agent"><header><h3>Research</h3><span class="ui-badge ui-badge--accent">active</span></header><p>Reads sources and writes a cited note.</p><button class="ui-button ui-button--secondary ui-button--small" type="button">Run</button></article><article class="ui-agent"><header><h3>Sentinel</h3><span class="ui-badge ui-badge--warning">busy</span></header><p>Checks the diff before it lands.</p><button class="ui-button ui-button--secondary ui-button--small" type="button">Run</button></article></div>
+  {{else if eq .Slug "permission-dialog"}}
+    <dialog class="ui-dialog" open><form method="dialog"><header><h3>Allow workspace access?</h3></header><label class="ui-check"><input type="checkbox" checked disabled><span class="ui-check__box" aria-hidden="true"></span><span class="ui-choice"><strong>Read files</strong><small>Required to answer questions about this repo.</small></span></label><label class="ui-check"><input type="checkbox"><span class="ui-check__box" aria-hidden="true"></span><span class="ui-choice"><strong>Run tools</strong><small>Optional. Lets the agent write and test.</small></span></label><div class="ui-dialog__actions"><button class="ui-button ui-button--quiet" value="deny">Deny</button><button class="ui-button ui-button--primary" value="allow">Allow</button></div></form></dialog>
+  {{else if eq .Slug "platform-faq"}}
+    <section class="ui-faq"><p class="ui-kicker">Platform</p><h3>Common questions</h3><div class="ui-accordion"><details open><summary>Where do keys live?</summary><p>On this machine. They are not sent to a second store.</p></details><details><summary>Does it work offline?</summary><p>The catalogue is server-rendered and has no animation runtime.</p></details></div></section>
+  {{else if eq .Slug "model-comparison"}}
+    <section class="ui-compare"><p class="ui-kicker">Prompt · explain the catalogue</p><div class="ui-compare__grid"><article><header><h3>Claude</h3><span>1.2s</span></header><p>A server-rendered kit. HTML first.</p></article><article><header><h3>Local</h3><span>2.8s</span></header><p>Same answer, run on this machine.</p></article></div></section>
   {{end}}
 </div>
 {{end}}

@@ -16,15 +16,17 @@ Open <http://localhost:8080/components>.
 
 - searchable, filterable component catalogue
 - foundations: Button, Badge, Card, Input
-- controls: Switch, Textarea, Checkbox, Radio group, Select, Slider, Cyber button
-- feedback: Alert, Progress, Dialog, Tooltip
-- navigation: Tabs, Stepper, Accordion
+- controls: Switch, Textarea, Checkbox, Radio group, Select, Slider, Cyber button, Label, Low-power toggle
+- feedback: Alert, Progress, Dialog, Tooltip, Permission dialog
+- navigation: Tabs, Stepper, Accordion, Theme selector, Edge handle, Limelight nav, Smoke nav
 - data: Table, Chart, Avatar, Keyboard hint, Separator, Scroll area, Sparkline, Donut
-- blocks: Terminal, Empty state, Stat card, Feature card, Pricing card, Model card, Code window
-- CSS-first effects: Liquid button, Color orb, Spotlight, Text shimmer, Marquee, Border beam, Counter, Typewriter, System pulse, Liquid tick
+- blocks: Terminal, Empty state, Stat card, Feature card, Pricing card, Model card, Code window, Not found, Weather widget, Research progress, AI input, Agent grid, Platform FAQ, Model comparison
+- CSS-first effects: Liquid button, Color orb, Spotlight, Text shimmer, Marquee, Border beam, Counter, Typewriter, System pulse, Liquid tick, Flow button, Save switch, Film grain
 - component detail pages with live preview, copy-ready markup, and accessibility contracts
 - `/tasks` as a small SQLite + HTMX persistence example
 - light/dark themes, reduced-motion support, responsive layout, keyboard focus states
+- accent picker that recolors the kit and prints the matching `--accent` CSS
+- named accent presets saved in SQLite
 
 ## Architecture
 
