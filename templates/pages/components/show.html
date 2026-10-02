@@ -16,7 +16,15 @@
   <article class="detail-main">
     <section id="preview" class="detail-section">
       <div class="section-heading"><div><p class="ui-kicker">Live surface</p><h2>Preview</h2></div><span class="section-heading__meta">server-rendered HTML</span></div>
-      <div class="preview-frame">{{template "kit/preview" .}}</div>
+      <div class="preview-stage">
+        <fieldset class="preview-stage__sizes">
+          <legend class="sr-only">Preview width</legend>
+          <label><input type="radio" name="preview-width" value="full" checked><span>Full</span></label>
+          <label><input type="radio" name="preview-width" value="desk"><span>Desk</span></label>
+          <label><input type="radio" name="preview-width" value="phone"><span>Phone</span></label>
+        </fieldset>
+        <div class="preview-frame">{{template "kit/preview" .}}</div>
+      </div>
     </section>
     <section id="markup" class="detail-section">
       <div class="section-heading"><div><p class="ui-kicker">Copy-ready</p><h2>Markup</h2></div><button class="ui-button ui-button--quiet ui-button--small" type="button" data-copy-target="#component-markup">Copy markup</button></div>

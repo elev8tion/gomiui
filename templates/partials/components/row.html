@@ -17,20 +17,20 @@
     {{else if eq .Slug "alert"}}<div class="ui-alert ui-alert--success" role="status"><strong>Saved</strong><span>just now</span></div>
     {{else if eq .Slug "progress"}}<div class="mini-progress"><span style="--value: 68%"></span></div>
     {{else if eq .Slug "tabs"}}<div class="ui-tabs ui-tabs--small"><span class="ui-tab is-active">Preview</span><span class="ui-tab">Code</span></div>
-    {{else if eq .Slug "stepper"}}<div class="mini-steps"><span class="is-complete">✓</span><i></i><span class="is-active">2</span><i></i><span>3</span></div>
-    {{else if eq .Slug "table"}}<div class="mini-table"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    {{else if eq .Slug "stepper"}}<div class="mini-steps"><span class="is-complete">✓</span><i></i><span class="is-active">2</span><i></i><span>3</span></div><span class="mini-steps__names"><b>Choose</b><b>Configure</b><b>Publish</b></span>
+    {{else if eq .Slug "table"}}<div class="mini-table"><b>Build</b><b>Status</b><b>When</b><span>gomiui-042</span><span>passed</span><span>2m</span><span>gomiui-041</span><span>running</span><span>now</span></div>
     {{else if eq .Slug "chart"}}<div class="mini-chart"><i style="--bar:34%"></i><i style="--bar:54%"></i><i style="--bar:46%"></i><i style="--bar:80%"></i><i style="--bar:67%"></i><i style="--bar:93%"></i></div>
     {{else if eq .Slug "terminal"}}<div class="mini-terminal"><span>$ go test ./...</span><b>ok</b></div>
     {{else if eq .Slug "liquid-button"}}<button class="ui-liquid" type="button"><span aria-hidden="true"></span><b>Hover me</b></button>
     {{else if eq .Slug "orb"}}<div class="ui-orb ui-orb--small" aria-hidden="true"></div>
     {{else if eq .Slug "empty-state"}}<div class="mini-empty"><span>∅</span><strong>Clear space</strong></div>
-    {{else if eq .Slug "spotlight"}}<div class="mini-card ui-spotlight"><span class="mini-card__line mini-card__line--wide"></span></div>
+    {{else if eq .Slug "spotlight"}}<article class="mini-card ui-spotlight"><strong>Make one thing matter</strong><span class="mini-card__line mini-card__line--wide"></span></article>
     {{else if eq .Slug "textarea"}}<div class="mini-input mini-input--area">Release notes</div>
     {{else if eq .Slug "checkbox"}}<label class="ui-check"><input type="checkbox" checked><span class="ui-check__box" aria-hidden="true"></span><span>Index</span></label>
     {{else if eq .Slug "radio-group"}}<label class="ui-radio"><input type="radio" checked><span class="ui-radio__mark" aria-hidden="true"></span><span>Dark</span></label>
     {{else if eq .Slug "select"}}<span class="ui-select ui-select--mini"><select aria-label="Model"><option>Claude</option></select></span>
     {{else if eq .Slug "slider"}}<span class="mini-range" style="--value: 64%"></span>
-    {{else if eq .Slug "accordion"}}<span class="mini-acc"><b>Tokens</b><b>Motion</b></span>
+    {{else if eq .Slug "accordion"}}<span class="mini-acc"><b>Tokens</b><b>Motion</b><b>Layout</b></span>
     {{else if eq .Slug "dialog"}}<span class="mini-dialog"><strong>Publish?</strong><i></i></span>
     {{else if eq .Slug "tooltip"}}<span class="mini-tip">Density</span>
     {{else if eq .Slug "avatar"}}<span class="ui-avatars"><span class="ui-avatar">A</span><span class="ui-avatar ui-avatar--b">K</span><span class="ui-avatar ui-avatar--more">+3</span></span>
@@ -42,7 +42,7 @@
     {{else if eq .Slug "cyber-button"}}<button class="ui-cyber" type="button"><span>Deploy</span></button>
     {{else if eq .Slug "text-shimmer"}}<strong class="ui-shimmer">Index</strong>
     {{else if eq .Slug "marquee"}}<span class="mini-marquee">Go · HTMX · CSS</span>
-    {{else if eq .Slug "border-beam"}}<span class="mini-card ui-beam"><span class="mini-card__line mini-card__line--wide"></span></span>
+    {{else if eq .Slug "border-beam"}}<article class="mini-card ui-beam"><strong>Edge light</strong><span class="mini-card__line mini-card__line--wide"></span></article>
     {{else if eq .Slug "counter"}}<strong class="mini-count">1,284</strong>
     {{else if eq .Slug "typewriter"}}<span class="mini-type">Server rendered</span>
     {{else if eq .Slug "system-pulse"}}<span class="ui-pulse"><i aria-hidden="true"></i>Healthy</span>
@@ -55,7 +55,7 @@
     {{else if eq .Slug "label"}}<span class="ui-label">Name <em>*</em></span>
     {{else if eq .Slug "low-power"}}<label class="ui-switch ui-switch--small"><input type="checkbox" checked><span class="ui-switch__track" aria-hidden="true"><span></span></span><span>Low</span></label>
     {{else if eq .Slug "theme-selector"}}<span class="ui-themes"><i style="--swatch:#34d399"></i><i style="--swatch:#a78bfa"></i><i style="--swatch:#fb923c"></i></span>
-    {{else if eq .Slug "edge-handle"}}<span class="mini-edge">›</span>
+    {{else if eq .Slug "edge-handle"}}<span class="mini-edge"><b aria-hidden="true">›</b><span>Inspector</span></span>
     {{else if eq .Slug "limelight-nav"}}<span class="ui-lime"><a>Home</a><a class="is-active">Kit</a></span>
     {{else if eq .Slug "smoke-nav"}}<span class="mini-smoke"><b>gomiui</b><i>Kit</i></span>
     {{else if eq .Slug "flow-button"}}<button class="ui-flow" type="button"><i aria-hidden="true"></i><b>Go</b></button>
@@ -69,6 +69,9 @@
     {{else if eq .Slug "permission-dialog"}}<span class="mini-dialog"><strong>Allow?</strong><i></i></span>
     {{else if eq .Slug "platform-faq"}}<span class="mini-acc"><b>Keys</b><b>Offline</b></span>
     {{else if eq .Slug "model-comparison"}}<span class="mini-compare"><b>A</b><b>B</b></span>
+    {{else if eq .Slug "folder"}}<span class="mini-folder"><i></i><i></i><i></i><svg viewBox="0 0 321 241" aria-hidden="true"><path d="M0 25C0 11.1929 11.1929 0 25 0H136.084C143.044 0 149.689 2.90139 154.42 8.00608L178.08 33.5343C182.811 38.639 189.456 41.5404 196.416 41.5404H296C309.807 41.5404 321 52.7333 321 66.5404V216C321 229.807 309.807 241 296 241H25C11.1929 241 0 229.807 0 216V25Z"></path></svg></span>
+    {{else if eq .Slug "button-stack"}}<span class="mini-stack"><span><i>+</i><b>Create</b></span><span><i>↗</i><b>Export</b></span><span><i>✓</i><b>Confirm</b></span></span>
+    {{else if eq .Slug "branched-menu"}}<span class="mini-branch"><b>Getting started</b><span>Installation</span><span>Quick start</span><span>Theming</span></span>
     {{end}}
   </div>
   <footer class="component-card__footer">

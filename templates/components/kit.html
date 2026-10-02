@@ -33,7 +33,7 @@
   {{else if eq .Slug "empty-state"}}
     <section class="ui-empty" aria-labelledby="empty-preview-title"><div class="ui-empty__mark">∅</div><h3 id="empty-preview-title">Nothing indexed yet</h3><p>Connect a repository to see its first component graph.</p><a class="ui-button ui-button--primary" href="/components">Browse the kit</a></section>
   {{else if eq .Slug "spotlight"}}
-    <div class="preview-grid preview-grid--two"><article class="ui-card ui-spotlight"><p class="ui-kicker">Featured primitive</p><h3 class="ui-card__title">Make one thing matter</h3><p class="ui-card__copy">The accent edge creates hierarchy without adding another color.</p></article><article class="ui-card"><p class="ui-kicker">Normal surface</p><h3 class="ui-card__title">Let the rest recede</h3><p class="ui-card__copy">Contrast is a finite resource. Spend it with intent.</p></article></div>
+    <article class="ui-card ui-spotlight"><p class="ui-kicker">Featured primitive</p><h3 class="ui-card__title">Make one thing matter</h3><p class="ui-card__copy">The accent edge creates hierarchy without adding another color.</p></article>
   {{else if eq .Slug "textarea"}}
     <label class="ui-field"><span class="ui-field__label">Release notes</span><textarea class="ui-textarea" name="notes" rows="4">Shipped the completed form primitives.</textarea><span class="ui-field__hint">Plain text. The server stores exactly what is submitted.</span></label>
   {{else if eq .Slug "checkbox"}}
@@ -97,7 +97,7 @@
   {{else if eq .Slug "theme-selector"}}
     <div class="ui-themes" role="radiogroup" aria-label="Theme"><label><input type="radio" name="preview-swatch" checked><i style="--swatch:#34d399"></i><span>Forest</span></label><label><input type="radio" name="preview-swatch"><i style="--swatch:#a78bfa"></i><span>Observatory</span></label><label><input type="radio" name="preview-swatch"><i style="--swatch:#fb923c"></i><span>Sunset</span></label></div>
   {{else if eq .Slug "edge-handle"}}
-    <div class="ui-edge"><button type="button" aria-expanded="false" aria-label="Open inspector">›</button><p>Inspector stays closed until the handle is used.</p></div>
+    <div class="ui-edge"><input id="ui-edge-open" type="checkbox"><label for="ui-edge-open"><span class="sr-only">Open inspector</span><span aria-hidden="true">›</span></label><div class="ui-edge__panel"><p class="ui-kicker">Inspector</p><p>Density, motion, and the active accent.</p></div></div>
   {{else if eq .Slug "limelight-nav"}}
     <nav class="ui-lime" aria-label="Primary"><a href="#home">Home</a><a class="is-active" href="#kit" aria-current="page">Kit</a><a href="#lab">Lab</a></nav>
   {{else if eq .Slug "smoke-nav"}}
@@ -124,6 +124,37 @@
     <section class="ui-faq"><p class="ui-kicker">Platform</p><h3>Common questions</h3><div class="ui-accordion"><details open><summary>Where do keys live?</summary><p>On this machine. They are not sent to a second store.</p></details><details><summary>Does it work offline?</summary><p>The catalogue is server-rendered and has no animation runtime.</p></details></div></section>
   {{else if eq .Slug "model-comparison"}}
     <section class="ui-compare"><p class="ui-kicker">Prompt · explain the catalogue</p><div class="ui-compare__grid"><article><header><h3>Claude</h3><span>1.2s</span></header><p>A server-rendered kit. HTML first.</p></article><article><header><h3>Local</h3><span>2.8s</span></header><p>Same answer, run on this machine.</p></article></div></section>
+  {{else if eq .Slug "folder"}}
+    <label class="ui-folder"><input type="checkbox" aria-label="Open folder"><span class="ui-folder__stage"><span class="ui-folder__back"></span><span class="ui-folder__cards" aria-hidden="true"><i></i><i></i><i></i></span><span class="ui-folder__flap" aria-hidden="true"><svg viewBox="0 0 321 241"><path d="M0 25C0 11.1929 11.1929 0 25 0H136.084C143.044 0 149.689 2.90139 154.42 8.00608L178.08 33.5343C182.811 38.639 189.456 41.5404 196.416 41.5404H296C309.807 41.5404 321 52.7333 321 66.5404V216C321 229.807 309.807 241 296 241H25C11.1929 241 0 229.807 0 216V25Z"></path></svg></span></span></label>
+  {{else if eq .Slug "button-stack"}}
+    <div class="ui-stack"><div class="ui-stack__item"><button class="ui-stack__btn ui-stack__btn--teal" type="button" aria-label="Create"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="4" x2="12" y2="20"></line><line x1="4" y1="12" x2="20" y2="12"></line></svg></button><span>Create</span></div><div class="ui-stack__item"><button class="ui-stack__btn ui-stack__btn--silver" type="button" aria-label="Export"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M17 7 L9 7 M17 7 L17 15"></path></svg></button><span>Export</span></div><div class="ui-stack__item"><button class="ui-stack__btn ui-stack__btn--mauve" type="button" aria-label="Confirm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13 L10 17.5 L19 7"></path></svg></button><span>Confirm</span></div></div>
+  {{else if eq .Slug "branched-menu"}}
+    <nav class="ui-branch" aria-label="Guide">
+      <div class="ui-branch__section">
+        <input class="ui-branch__toggle" type="checkbox" id="ui-branch-sec-1" checked>
+        <span class="ui-branch__marker" aria-hidden="true"></span>
+        <label class="ui-branch__head" for="ui-branch-sec-1">Getting started</label>
+        <div class="ui-branch__body"><div class="ui-branch__fold"><div class="ui-branch__tree">
+          <svg class="ui-branch__lines" viewBox="0 0 40 156" aria-hidden="true"><path class="ui-branch__base" d="M14 0 V122"></path><path class="ui-branch__base" d="M14 14 A10 10 0 0 0 24 24 H32"></path><path class="ui-branch__base" d="M14 50 A10 10 0 0 0 24 60 H32"></path><path class="ui-branch__base" d="M14 86 A10 10 0 0 0 24 96 H32"></path><path class="ui-branch__base" d="M14 122 A10 10 0 0 0 24 132 H32"></path><path class="ui-branch__reach reach-1" d="M14 0 V14 A10 10 0 0 0 24 24 H32"></path><path class="ui-branch__reach reach-2" d="M14 0 V50 A10 10 0 0 0 24 60 H32"></path><path class="ui-branch__reach reach-3" d="M14 0 V86 A10 10 0 0 0 24 96 H32"></path><path class="ui-branch__reach reach-4" d="M14 0 V122 A10 10 0 0 0 24 132 H32"></path></svg>
+          <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-1" checked><label class="ui-branch__item" for="ui-branch-1"><span class="ui-branch__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path><path d="M5 21h14"></path></svg></span>Installation</label>
+          <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-2"><label class="ui-branch__item" for="ui-branch-2"><span class="ui-branch__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19c4-1 6-6 7-9 3 1 7 1 9-1-1 5-4 8-8 9"></path><path d="M9 14l-4 1 1-4"></path></svg></span>Quick start</label>
+          <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-3"><label class="ui-branch__item" for="ui-branch-3"><span class="ui-branch__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2"></path></svg></span>Configuration</label>
+          <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-4"><label class="ui-branch__item" for="ui-branch-4"><span class="ui-branch__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3s5 6 5 10a5 5 0 0 1-10 0c0-4 5-10 5-10z"></path></svg></span>Theming</label>
+        </div></div></div>
+      </div>
+      <div class="ui-branch__section">
+        <input class="ui-branch__toggle" type="checkbox" id="ui-branch-sec-2">
+        <span class="ui-branch__marker" aria-hidden="true"></span>
+        <label class="ui-branch__head" for="ui-branch-sec-2">Components</label>
+        <div class="ui-branch__body"><div class="ui-branch__fold"><div class="ui-branch__tree">
+          <svg class="ui-branch__lines" viewBox="0 0 40 156" aria-hidden="true"><path class="ui-branch__base" d="M14 0 V122"></path><path class="ui-branch__base" d="M14 14 A10 10 0 0 0 24 24 H32"></path><path class="ui-branch__base" d="M14 50 A10 10 0 0 0 24 60 H32"></path><path class="ui-branch__base" d="M14 86 A10 10 0 0 0 24 96 H32"></path><path class="ui-branch__base" d="M14 122 A10 10 0 0 0 24 132 H32"></path><path class="ui-branch__reach reach-1" d="M14 0 V14 A10 10 0 0 0 24 24 H32"></path><path class="ui-branch__reach reach-2" d="M14 0 V50 A10 10 0 0 0 24 60 H32"></path><path class="ui-branch__reach reach-3" d="M14 0 V86 A10 10 0 0 0 24 96 H32"></path><path class="ui-branch__reach reach-4" d="M14 0 V122 A10 10 0 0 0 24 132 H32"></path></svg>
+          <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-5"><label class="ui-branch__item" for="ui-branch-5"><span class="ui-branch__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>Buttons</label>
+          <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-6"><label class="ui-branch__item" for="ui-branch-6"><span class="ui-branch__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6V4h14v2M9 20h6M12 4v16"></path></svg></span>Typography</label>
+          <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-7"><label class="ui-branch__item" for="ui-branch-7"><span class="ui-branch__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 18l9 5 9-5"></path></svg></span>Overlays</label>
+          <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-8"><label class="ui-branch__item" for="ui-branch-8"><span class="ui-branch__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 16a6 6 0 1 1 12 0c0 4-2 5-2 5H8s-2-1-2-5zM10 21a2 2 0 0 0 4 0"></path></svg></span>Toasts</label>
+        </div></div></div>
+      </div>
+    </nav>
   {{end}}
 </div>
 {{end}}

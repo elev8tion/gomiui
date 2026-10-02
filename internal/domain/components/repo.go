@@ -469,10 +469,11 @@ func catalog() []Component {
 		{
 			Slug: "edge-handle", Name: "Edge handle", Category: "navigation", Summary: "A button pinned to a panel edge that stays available to the keyboard.", Description: "miui's edge handle reveals a side panel. Auto-hide is off. The handle remains a button with an accessible name in every state.", Status: "stable", Tags: []string{"panel", "edge", "button"},
 			Markup: `<div class="ui-edge">
-  <button type="button" aria-expanded="false" aria-label="Open inspector">›</button>
-  <p>Inspector stays closed until the handle is used.</p>
+  <input id="ui-edge-open" type="checkbox">
+  <label for="ui-edge-open"><span class="sr-only">Open inspector</span><span aria-hidden="true">›</span></label>
+  <div class="ui-edge__panel"><p class="ui-kicker">Inspector</p><p>Density, motion, and the active accent.</p></div>
 </div>`,
-			Accessibility: []string{"The handle is a button with a text name.", "Reflect open state with aria-expanded.", "Do not remove the handle on a timer."},
+			Accessibility: []string{"The handle is a checkbox with a text name.", "Checking it opens the panel. Unchecking closes it.", "Do not remove the handle on a timer."},
 		},
 		{
 			Slug: "limelight-nav", Name: "Limelight nav", Category: "navigation", Summary: "A compact nav whose active item carries a soft accent glow.", Description: "miui measures the glow onto the active item. This port places the glow with CSS on the current link, so it works with no layout script.", Status: "stable", Tags: []string{"nav", "active", "glow"},
@@ -598,6 +599,63 @@ func catalog() []Component {
   </div>
 </section>`,
 			Accessibility: []string{"Name both models.", "Put the latency in text.", "Stack the columns on a narrow screen."},
+		},
+		{
+			Slug: "folder", Name: "Folder", Category: "effects", Summary: "A folder that lifts its papers on hover and opens from a checkbox.", Description: "The papers and flap are CSS. Checking the box opens the folder without a script. Reduced motion keeps every state and drops the travel.", Status: "experimental", Tags: []string{"motion", "folder", "css"},
+			Markup: `<label class="ui-folder">
+  <input type="checkbox" aria-label="Open folder">
+  <span class="ui-folder__stage">
+    <span class="ui-folder__back"></span>
+    <span class="ui-folder__cards" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="ui-folder__flap" aria-hidden="true"><svg viewBox="0 0 321 241"><path d="M0 25C0 11.1929 11.1929 0 25 0H136.084C143.044 0 149.689 2.90139 154.42 8.00608L178.08 33.5343C182.811 38.639 189.456 41.5404 196.416 41.5404H296C309.807 41.5404 321 52.7333 321 66.5404V216C321 229.807 309.807 241 296 241H25C11.1929 241 0 229.807 0 216V25Z"></path></svg></span>
+  </span>
+</label>`,
+			Accessibility: []string{"The control is a checkbox with an accessible name.", "Open and closed are both real states, not hover-only.", "Reduced motion still shows the open folder."},
+		},
+		{
+			Slug: "button-stack", Name: "Button stack", Category: "controls", Summary: "Three glowing actions with visible names.", Description: "Create, export, and confirm stay real buttons. The glow and icon motion are decoration. The names stay readable without a hover.", Status: "stable", Tags: []string{"button", "glow", "actions"},
+			Markup: `<div class="ui-stack">
+  <div class="ui-stack__item"><button class="ui-stack__btn ui-stack__btn--teal" type="button" aria-label="Create"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="4" x2="12" y2="20"></line><line x1="4" y1="12" x2="20" y2="12"></line></svg></button><span>Create</span></div>
+  <div class="ui-stack__item"><button class="ui-stack__btn ui-stack__btn--silver" type="button" aria-label="Export"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 L17 7 M17 7 L9 7 M17 7 L17 15"></path></svg></button><span>Export</span></div>
+  <div class="ui-stack__item"><button class="ui-stack__btn ui-stack__btn--mauve" type="button" aria-label="Confirm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13 L10 17.5 L19 7"></path></svg></button><span>Confirm</span></div>
+</div>`,
+			Accessibility: []string{"Each action is a button.", "The name is visible text, not only a tooltip.", "Focus uses the same glow as hover."},
+		},
+		{
+			Slug: "branched-menu", Name: "Branched menu", Category: "navigation", Summary: "A section list whose selected branch draws itself.", Description: "Sections are checkboxes and items are radios, so the menu opens and selects with no script. The accent line shows which item is current.", Status: "stable", Tags: []string{"menu", "tree", "css"},
+			Markup: `<nav class="ui-branch" aria-label="Guide">
+  <div class="ui-branch__section">
+    <input class="ui-branch__toggle" type="checkbox" id="ui-branch-sec-1" checked>
+    <span class="ui-branch__marker" aria-hidden="true"></span>
+    <label class="ui-branch__head" for="ui-branch-sec-1">Getting started</label>
+    <div class="ui-branch__body"><div class="ui-branch__fold"><div class="ui-branch__tree">
+      <svg class="ui-branch__lines" viewBox="0 0 40 156" aria-hidden="true"><path class="ui-branch__base" d="M14 0 V122"></path><path class="ui-branch__base" d="M14 14 A10 10 0 0 0 24 24 H32"></path><path class="ui-branch__base" d="M14 50 A10 10 0 0 0 24 60 H32"></path><path class="ui-branch__base" d="M14 86 A10 10 0 0 0 24 96 H32"></path><path class="ui-branch__base" d="M14 122 A10 10 0 0 0 24 132 H32"></path><path class="ui-branch__reach reach-1" d="M14 0 V14 A10 10 0 0 0 24 24 H32"></path><path class="ui-branch__reach reach-2" d="M14 0 V50 A10 10 0 0 0 24 60 H32"></path><path class="ui-branch__reach reach-3" d="M14 0 V86 A10 10 0 0 0 24 96 H32"></path><path class="ui-branch__reach reach-4" d="M14 0 V122 A10 10 0 0 0 24 132 H32"></path></svg>
+      <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-1" checked>
+      <label class="ui-branch__item" for="ui-branch-1">Installation</label>
+      <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-2">
+      <label class="ui-branch__item" for="ui-branch-2">Quick start</label>
+      <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-3">
+      <label class="ui-branch__item" for="ui-branch-3">Configuration</label>
+      <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-4">
+      <label class="ui-branch__item" for="ui-branch-4">Theming</label>
+    </div></div></div>
+  </div>
+  <div class="ui-branch__section">
+    <input class="ui-branch__toggle" type="checkbox" id="ui-branch-sec-2">
+    <label class="ui-branch__head" for="ui-branch-sec-2">Components</label>
+    <div class="ui-branch__body"><div class="ui-branch__fold"><div class="ui-branch__tree">
+      <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-5">
+      <label class="ui-branch__item" for="ui-branch-5">Buttons</label>
+      <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-6">
+      <label class="ui-branch__item" for="ui-branch-6">Typography</label>
+      <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-7">
+      <label class="ui-branch__item" for="ui-branch-7">Overlays</label>
+      <input class="ui-branch__radio" type="radio" name="ui-branch-item" id="ui-branch-8">
+      <label class="ui-branch__item" for="ui-branch-8">Toasts</label>
+    </div></div></div>
+  </div>
+</nav>`,
+			Accessibility: []string{"Sections are checkboxes and items are radios.", "Every control has a visible label.", "The current item is selected, not only colored."},
 		},
 	}
 }
